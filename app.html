@@ -6,413 +6,692 @@
 
 <title>FamilyOS — Dashboard</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 
 <style>
 
 :root{
-  --cream:#F5F0E8;
-  --white:#FDFAF5;
-  --terracotta:#C4622D;
-  --terracotta-light:#E8855A;
-  --sage:#6B7F5E;
-  --charcoal:#232323;
-  --gray:#6B6560;
-  --sand:#D4C5A9;
-  --gold:#B8943F;
-  --sidebar:270px;
+--cream:#F5F0E8;
+--white:#FDFAF5;
+--terracotta:#C4622D;
+--terracotta2:#E8855A;
+--sage:#6B7F5E;
+--gold:#B8943F;
+--charcoal:#262626;
+--gray:#726B64;
+--sand:#D4C5A9;
+--junior:#E87D3E;
+--sidebar:270px;
 }
 
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html,body{
+height:100%;
+overflow:hidden;
 }
 
 body{
-  font-family:'DM Sans',sans-serif;
-  background:var(--cream);
-  color:var(--charcoal);
-  display:flex;
-  height:100vh;
-  overflow:hidden;
+font-family:'DM Sans',sans-serif;
+background:var(--cream);
+color:var(--charcoal);
+display:flex;
 }
 
-/* SIDEBAR */
-
 .sidebar{
-  width:var(--sidebar);
-  background:var(--charcoal);
-  color:white;
-  padding:28px 0;
-  display:flex;
-  flex-direction:column;
+width:var(--sidebar);
+height:100vh;
+background:linear-gradient(180deg,#232323,#303030);
+padding:28px 0;
+display:flex;
+flex-direction:column;
+position:relative;
+overflow:hidden;
+}
+
+.sidebar:before{
+content:'';
+position:absolute;
+right:-120px;
+bottom:-120px;
+width:300px;
+height:300px;
+border-radius:50%;
+background:radial-gradient(circle,rgba(196,98,45,.2),transparent 70%);
 }
 
 .logo{
-  padding:0 28px;
-  font-family:'Playfair Display',serif;
-  font-size:1.8rem;
-  font-weight:900;
-  margin-bottom:6px;
+padding:0 24px;
+font-family:'Playfair Display',serif;
+font-size:1.9rem;
+font-weight:900;
+color:white;
+margin-bottom:6px;
 }
 
 .logo span{
-  color:var(--terracotta);
+color:var(--terracotta2);
 }
 
 .tag{
-  padding:0 28px;
-  color:rgba(255,255,255,.35);
-  font-size:.75rem;
-  margin-bottom:34px;
+padding:0 24px;
+font-size:.72rem;
+color:rgba(255,255,255,.32);
+margin-bottom:30px;
+}
+
+.sec{
+padding:0 24px;
+margin-bottom:10px;
+font-size:.62rem;
+letter-spacing:2px;
+text-transform:uppercase;
+color:rgba(255,255,255,.25);
+font-weight:700;
 }
 
 .nav{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  padding:14px 28px;
-  cursor:pointer;
-  transition:.2s;
-  border-left:3px solid transparent;
+display:flex;
+align-items:center;
+gap:12px;
+padding:12px 24px;
+cursor:pointer;
+transition:.2s;
+border-left:3px solid transparent;
 }
 
 .nav:hover{
-  background:rgba(255,255,255,.05);
+background:rgba(255,255,255,.05);
 }
 
 .nav.active{
-  background:rgba(196,98,45,.12);
-  border-left-color:var(--terracotta);
+background:rgba(196,98,45,.12);
+border-left-color:var(--terracotta);
 }
 
-.nav-icon{
-  width:36px;
-  height:36px;
-  border-radius:12px;
-  background:rgba(255,255,255,.08);
-  display:flex;
-  align-items:center;
-  justify-content:center;
+.ic{
+width:34px;
+height:34px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:10px;
+background:rgba(255,255,255,.06);
+font-size:1rem;
+}
+
+.nav.active .ic{
+background:rgba(196,98,45,.18);
 }
 
 .nav span{
-  color:rgba(255,255,255,.72);
-  font-size:.92rem;
+font-size:.86rem;
+color:rgba(255,255,255,.7);
+}
+
+.nav.active span{
+color:white;
 }
 
 .bottom{
-  margin-top:auto;
-  padding:0 18px;
+margin-top:auto;
+padding:0 18px;
 }
 
 .profile{
-  background:rgba(255,255,255,.06);
-  border-radius:18px;
-  padding:16px;
-  display:flex;
-  gap:12px;
-  align-items:center;
+background:rgba(255,255,255,.06);
+border-radius:16px;
+padding:14px;
+display:flex;
+align-items:center;
+gap:12px;
 }
 
 .avatar{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  background:var(--terracotta);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:700;
+width:42px;
+height:42px;
+border-radius:50%;
+background:var(--terracotta);
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+font-weight:700;
+}
+
+.profile strong{
+display:block;
+color:white;
+font-size:.84rem;
 }
 
 .profile small{
-  color:rgba(255,255,255,.4);
+color:rgba(255,255,255,.38);
+font-size:.7rem;
 }
 
-/* MAIN */
-
 .main{
-  flex:1;
-  overflow-y:auto;
+flex:1;
+height:100vh;
+overflow-y:auto;
+}
+
+.main::-webkit-scrollbar{
+width:5px;
+}
+
+.main::-webkit-scrollbar-thumb{
+background:var(--sand);
+border-radius:999px;
 }
 
 .top{
-  background:rgba(253,250,245,.88);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(212,197,169,.4);
-  padding:24px 36px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  position:sticky;
-  top:0;
-  z-index:10;
+position:sticky;
+top:0;
+z-index:10;
+background:rgba(253,250,245,.92);
+backdrop-filter:blur(14px);
+padding:22px 38px;
+border-bottom:1px solid rgba(0,0,0,.05);
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
 .top h1{
-  font-family:'Playfair Display',serif;
-  font-size:2rem;
+font-family:'Playfair Display',serif;
+font-size:1.7rem;
+line-height:1;
 }
 
 .top h1 em{
-  color:var(--terracotta);
-  font-style:italic;
+color:var(--terracotta);
+font-style:italic;
 }
 
 .top p{
-  color:var(--gray);
-  margin-top:4px;
+margin-top:6px;
+font-size:.82rem;
+color:var(--gray);
+}
+
+.right{
+display:flex;
+gap:12px;
+align-items:center;
 }
 
 .weather{
-  background:var(--white);
-  border:1px solid var(--sand);
-  border-radius:999px;
-  padding:12px 18px;
-  font-size:.9rem;
+padding:10px 16px;
+background:white;
+border-radius:999px;
+border:1px solid rgba(0,0,0,.06);
+font-size:.82rem;
+}
+
+.bell{
+width:42px;
+height:42px;
+border-radius:50%;
+background:white;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+position:relative;
+border:1px solid rgba(0,0,0,.06);
+}
+
+.dot{
+position:absolute;
+top:8px;
+right:8px;
+width:8px;
+height:8px;
+border-radius:50%;
+background:var(--terracotta);
 }
 
 .content{
-  padding:36px;
+padding:34px 38px 70px;
 }
 
-/* CARDS */
-
 .stats{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:18px;
-  margin-bottom:24px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:18px;
+margin-bottom:24px;
 }
 
 .card{
-  background:white;
-  border-radius:26px;
-  padding:26px;
-  border:1px solid rgba(212,197,169,.45);
+background:white;
+border-radius:22px;
+padding:24px;
+border:1px solid rgba(0,0,0,.05);
+box-shadow:0 10px 35px rgba(0,0,0,.04);
 }
 
-.stat strong{
-  display:block;
-  font-family:'Playfair Display',serif;
-  font-size:2.3rem;
-  margin:10px 0 6px;
+.stat{
+position:relative;
+overflow:hidden;
 }
 
-.stat small{
-  color:var(--gray);
+.stat:before{
+content:'';
+position:absolute;
+top:0;
+left:0;
+right:0;
+height:4px;
+background:var(--terracotta);
 }
 
-.label{
-  color:var(--gray);
-  text-transform:uppercase;
-  letter-spacing:1px;
-  font-size:.7rem;
-  font-weight:700;
+.stat:nth-child(2):before{
+background:var(--sage);
 }
 
-/* GRID */
-
-.grid{
-  display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:22px;
-  margin-bottom:24px;
+.stat:nth-child(3):before{
+background:var(--gold);
 }
 
-.chat{
-  background:var(--charcoal);
-  color:white;
-  border-radius:30px;
-  padding:28px;
+.stat:nth-child(4):before{
+background:#7B68A8;
+}
+
+.mini-label{
+font-size:.68rem;
+text-transform:uppercase;
+letter-spacing:1.5px;
+font-weight:700;
+color:var(--gray);
+margin-bottom:12px;
+}
+
+.big{
+font-family:'Playfair Display',serif;
+font-size:2rem;
+font-weight:900;
+margin-bottom:6px;
+}
+
+.small{
+font-size:.76rem;
+color:var(--gray);
+}
+
+.grid2{
+display:grid;
+grid-template-columns:1.2fr .8fr;
+gap:22px;
+margin-bottom:24px;
+}
+
+  .chat{
+background:linear-gradient(135deg,#242424,#343434);
+color:white;
+min-height:420px;
+position:relative;
+overflow:hidden;
+}
+
+.chat:before{
+content:'';
+position:absolute;
+right:-70px;
+top:-70px;
+width:220px;
+height:220px;
+border-radius:50%;
+background:radial-gradient(circle,rgba(196,98,45,.2),transparent 70%);
 }
 
 .chat-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:18px;
+position:relative;
+z-index:2;
 }
 
-.chat-title{
-  font-family:'Playfair Display',serif;
-  font-size:1.4rem;
+.chat-head h3{
+font-family:'Playfair Display',serif;
+font-size:1.15rem;
+}
+
+.chat-head small{
+color:rgba(255,255,255,.4);
 }
 
 .messages{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-  margin-bottom:20px;
+display:flex;
+flex-direction:column;
+gap:12px;
+max-height:270px;
+overflow-y:auto;
+padding-right:4px;
+margin-bottom:18px;
+position:relative;
+z-index:2;
+}
+
+.messages::-webkit-scrollbar{
+width:4px;
+}
+
+.messages::-webkit-scrollbar-thumb{
+background:rgba(255,255,255,.15);
+border-radius:999px;
 }
 
 .msg{
-  max-width:82%;
-  padding:16px 18px;
-  border-radius:20px;
-  line-height:1.5;
+padding:12px 15px;
+border-radius:16px;
+font-size:.84rem;
+line-height:1.6;
+max-width:85%;
 }
 
-.user{
-  background:var(--terracotta);
-  margin-left:auto;
+.msg.ai{
+background:rgba(255,255,255,.08);
+border-bottom-left-radius:6px;
 }
 
-.ai{
-  background:rgba(255,255,255,.08);
-  color:rgba(255,255,255,.82);
+.msg.user{
+background:var(--terracotta);
+align-self:flex-end;
+border-bottom-right-radius:6px;
+}
+
+.msg strong{
+display:block;
+margin-bottom:4px;
+font-size:.62rem;
+letter-spacing:1px;
+text-transform:uppercase;
+color:var(--terracotta2);
 }
 
 .input{
-  display:flex;
-  gap:10px;
+display:flex;
+gap:10px;
+position:relative;
+z-index:2;
 }
 
 .input input{
-  flex:1;
-  border:none;
-  outline:none;
-  background:rgba(255,255,255,.08);
-  border-radius:999px;
-  padding:14px 18px;
-  color:white;
+flex:1;
+border:none;
+outline:none;
+background:rgba(255,255,255,.08);
+border:1px solid rgba(255,255,255,.08);
+border-radius:999px;
+padding:12px 18px;
+color:white;
+font-family:'DM Sans',sans-serif;
 }
 
-.input button{
-  width:48px;
-  border:none;
-  border-radius:50%;
-  background:var(--terracotta);
-  color:white;
-  cursor:pointer;
+.input input::placeholder{
+color:rgba(255,255,255,.3);
 }
 
-/* RIGHT */
-
-.stack{
-  display:flex;
-  flex-direction:column;
-  gap:20px;
+.send{
+width:42px;
+height:42px;
+border:none;
+border-radius:50%;
+background:var(--terracotta);
+color:white;
+cursor:pointer;
+font-size:1rem;
 }
 
-.calendar{
-  display:grid;
-  grid-template-columns:repeat(7,1fr);
-  gap:6px;
-  margin-top:18px;
+.side-stack{
+display:flex;
+flex-direction:column;
+gap:20px;
 }
 
-.day{
-  aspect-ratio:1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:12px;
-  font-size:.82rem;
-  color:var(--gray);
+.quick{
+display:flex;
+flex-direction:column;
+gap:10px;
 }
 
-.today{
-  background:var(--terracotta);
-  color:white;
-  font-weight:700;
+.quick-item{
+padding:12px 14px;
+background:var(--cream);
+border-radius:14px;
+font-size:.82rem;
+cursor:pointer;
+transition:.2s;
 }
 
-.agent-list{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-  margin-top:18px;
+.quick-item:hover{
+transform:translateY(-2px);
 }
 
-.agent{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  padding:14px;
-  border-radius:16px;
-  background:var(--cream);
+.section-title{
+font-family:'Playfair Display',serif;
+font-size:1.1rem;
+margin-bottom:18px;
 }
 
-.agent-icon{
-  width:42px;
-  height:42px;
-  border-radius:14px;
-  background:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:1.2rem;
+.family-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:18px;
+margin-bottom:24px;
 }
 
-.agent small{
-  color:var(--gray);
+.member{
+background:white;
+border-radius:22px;
+padding:24px;
+border:1px solid rgba(0,0,0,.05);
 }
 
-/* TASKS */
+.member-top{
+display:flex;
+align-items:center;
+gap:12px;
+margin-bottom:18px;
+}
+
+.member-avatar{
+width:50px;
+height:50px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:1.2rem;
+color:white;
+font-weight:700;
+background:var(--junior);
+}
+
+.member h4{
+font-size:1rem;
+margin-bottom:3px;
+}
+
+.member small{
+color:var(--gray);
+}
+
+.stars{
+margin-top:16px;
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+}
+
+.star{
+background:rgba(184,148,63,.12);
+color:var(--gold);
+padding:8px 12px;
+border-radius:999px;
+font-size:.76rem;
+font-weight:700;
+}
 
 .tasks{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:22px;
+margin-top:18px;
+display:flex;
+flex-direction:column;
+gap:10px;
 }
 
 .task{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  padding:14px;
-  background:var(--cream);
-  border-radius:16px;
-  margin-top:12px;
+display:flex;
+align-items:center;
+gap:10px;
+padding:10px 12px;
+background:var(--cream);
+border-radius:12px;
+font-size:.82rem;
+cursor:pointer;
 }
 
 .check{
-  width:22px;
-  height:22px;
-  border-radius:50%;
-  border:2px solid var(--sand);
+width:18px;
+height:18px;
+border-radius:50%;
+border:2px solid var(--sand);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:.7rem;
 }
 
-.reward{
-  background:rgba(107,127,94,.12);
+.task.done .check{
+background:var(--sage);
+border-color:var(--sage);
+color:white;
 }
 
-.reward strong{
-  color:var(--sage);
+.task.done{
+opacity:.55;
 }
 
-/* RESPONSIVE */
-
-@media(max-width:1000px){
-
-  body{
-    flex-direction:column;
-  }
-
-  .sidebar{
-    width:100%;
-    height:auto;
-  }
-
-  .stats{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .grid,
-  .tasks{
-    grid-template-columns:1fr;
-  }
-
+.money-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:22px;
+margin-bottom:24px;
 }
 
-@media(max-width:700px){
+.bar{
+margin-bottom:18px;
+}
 
-  .stats{
-    grid-template-columns:1fr;
-  }
+.bar-top{
+display:flex;
+justify-content:space-between;
+margin-bottom:8px;
+font-size:.82rem;
+}
+
+.progress{
+height:8px;
+border-radius:999px;
+background:var(--cream);
+overflow:hidden;
+}
+
+.fill{
+height:100%;
+border-radius:999px;
+}
+
+.alert{
+padding:16px;
+border-radius:16px;
+margin-bottom:12px;
+}
+
+.alert.green{
+background:rgba(107,127,94,.1);
+border:1px solid rgba(107,127,94,.2);
+}
+
+.alert.orange{
+background:rgba(196,98,45,.08);
+border:1px solid rgba(196,98,45,.15);
+}
+
+.alert.gold{
+background:rgba(184,148,63,.08);
+border:1px solid rgba(184,148,63,.18);
+}
+
+.alert strong{
+display:block;
+margin-bottom:6px;
+}
+
+.whatsapp-box{
+background:linear-gradient(135deg,#4CAF50,#2E7D32);
+color:white;
+border-radius:24px;
+padding:28px;
+}
+
+.wa-msg{
+background:rgba(255,255,255,.14);
+padding:14px;
+border-radius:14px;
+margin-top:12px;
+font-size:.84rem;
+line-height:1.5;
+}
+
+.panel{
+display:none;
+}
+
+.panel.active{
+display:block;
+animation:fade .35s ease;
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(10px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@media(max-width:980px){
+
+.sidebar{
+display:none;
+}
+
+.stats,
+.family-grid,
+.money-grid,
+.grid2{
+grid-template-columns:1fr;
+}
+
+.content{
+padding:24px;
+}
+
+.top{
+padding:18px 24px;
+}
 
 }
 
@@ -421,347 +700,667 @@ body{
 
 <body>
 
-<!-- SIDEBAR -->
+<aside class="sidebar">
 
-<div class="sidebar">
+<div class="logo">
+Family<span>OS</span>
+</div>
 
-  <div class="logo">
-    Family<span>OS</span>
-  </div>
+<div class="tag">
+familia ta organizată automat
+</div>
 
-  <div class="tag">
-    Familia ta. Organizată. Mereu. Automat.
-  </div>
+<div class="sec">
+Principal
+</div>
 
-  <div class="nav active">
-    <div class="nav-icon">🏠</div>
-    <span>Dashboard</span>
-  </div>
+<div class="nav active" onclick="showPanel('dashboard',this)">
+<div class="ic">🏠</div>
+<span>Dashboard</span>
+</div>
 
-  <div class="nav">
-    <div class="nav-icon">🧠</div>
-    <span>Orchestrator</span>
-  </div>
+<div class="nav" onclick="showPanel('orchestrator',this)">
+<div class="ic">🧠</div>
+<span>Orchestrator</span>
+</div>
 
-  <div class="nav">
-    <div class="nav-icon">👨‍🍳</div>
-    <span>Chef Inteligent</span>
-  </div>
+<div class="nav" onclick="showPanel('family',this)">
+<div class="ic">🧒</div>
+<span>Nido Junior</span>
+</div>
 
-  <div class="nav">
-    <div class="nav-icon">💰</div>
-    <span>Economistul Casei</span>
-  </div>
+<div class="nav" onclick="showPanel('money',this)">
+<div class="ic">💰</div>
+<span>Economist</span>
+</div>
 
-  <div class="nav">
-    <div class="nav-icon">🧒</div>
-    <span>FamilyOS Junior</span>
-  </div>
+<div class="nav" onclick="showPanel('whatsapp',this)">
+<div class="ic">📲</div>
+<span>WhatsApp AI</span>
+</div>
 
-  <div class="nav">
-    <div class="nav-icon">📸</div>
-    <span>Memory Keeper</span>
-  </div>
+<div class="bottom">
 
-  <div class="nav">
-    <div class="nav-icon">⚙️</div>
-    <span>Setări</span>
-  </div>
+<div class="profile">
 
-  <div class="bottom">
-    <div class="profile">
-      <div class="avatar">A</div>
-      <div>
-        <div>Familia Andrei</div>
-        <small>4 membri activi</small>
-      </div>
-    </div>
-  </div>
+<div class="avatar">
+F
+</div>
+
+<div>
+<strong>Familia Ionescu</strong>
+<small>4 membri activi</small>
+</div>
 
 </div>
 
-<!-- MAIN -->
+</div>
 
-<div class="main">
+</aside>
 
-  <div class="top">
+<main class="main">
 
-    <div>
-      <h1>Bună dimineața, <em>familia!</em></h1>
-      <p id="dateText">FamilyOS sincronizează tot pentru azi.</p>
-    </div>
+<div class="top">
 
-    <div class="weather" id="weatherBox">
-      ☀️ Detecting weather...
-    </div>
+<div>
 
-  </div>
+<h1 id="hello">
+👋 Welcome back, <em>family!</em>
+</h1>
 
-  <div class="content">
-
-    <!-- STATS -->
-
-    <div class="stats">
-
-      <div class="card stat">
-        <div class="label">Economisit luna asta</div>
-        <strong>340 RON</strong>
-        <small>↑ 12% vs luna trecută</small>
-      </div>
-
-      <div class="card stat">
-        <div class="label">Taskuri completate</div>
-        <strong>14/18</strong>
-        <small>4 rămase azi</small>
-      </div>
-
-      <div class="card stat">
-        <div class="label">Copii</div>
-        <strong>8⭐</strong>
-        <small>Ana conduce azi 🎉</small>
-      </div>
-
-      <div class="card stat">
-        <div class="label">Reminder</div>
-        <strong>2</strong>
-        <small>Facturi în 3 zile</small>
-      </div>
-
-    </div>
-
-    <!-- MAIN GRID -->
-
-    <div class="grid">
-
-      <!-- CHAT -->
-
-      <div class="chat">
-
-        <div class="chat-head">
-          <div class="chat-title">🧠 Orchestrator</div>
-          <small>7 agenți activi</small>
-        </div>
-
-        <div class="messages" id="messages">
-
-          <div class="msg ai">
-            Bună dimineața! Ana a completat toate taskurile azi. Factura la gaz vine în 3 zile.
-          </div>
-
-          <div class="msg user">
-            Adu-mi aminte mâine de dentistul lui Ionuț.
-          </div>
-
-          <div class="msg ai">
-            Gata. Reminder adăugat și trimis și pe WhatsApp. ✅
-          </div>
-
-        </div>
-
-        <div class="input">
-          <input id="messageInput" placeholder="Scrie orice către FamilyOS...">
-          <button onclick="sendMessage()">↑</button>
-        </div>
-
-      </div>
-
-      <!-- RIGHT -->
-
-      <div class="stack">
-
-        <div class="card">
-
-          <div class="label">Mai 2026</div>
-
-          <div class="calendar">
-
-            <div class="day">1</div>
-            <div class="day">2</div>
-            <div class="day">3</div>
-            <div class="day">4</div>
-            <div class="day">5</div>
-            <div class="day">6</div>
-            <div class="day today">7</div>
-
-            <div class="day">8</div>
-            <div class="day">9</div>
-            <div class="day">10</div>
-            <div class="day">11</div>
-            <div class="day">12</div>
-            <div class="day">13</div>
-            <div class="day">14</div>
-
-          </div>
-
-        </div>
-
-        <div class="card">
-
-          <div class="label">Agenți activi</div>
-
-          <div class="agent-list">
-
-            <div class="agent">
-              <div class="agent-icon">👨‍🍳</div>
-              <div>
-                <div>Chef Inteligent</div>
-                <small>Meniul e gata</small>
-              </div>
-            </div>
-
-            <div class="agent">
-              <div class="agent-icon">💰</div>
-              <div>
-                <div>Economist</div>
-                <small>3 economii detectate</small>
-              </div>
-            </div>
-
-            <div class="agent">
-              <div class="agent-icon">🧒</div>
-              <div>
-                <div>FamilyOS Junior</div>
-                <small>Ana: 5⭐ azi</small>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- TASKS -->
-
-    <div class="tasks">
-
-      <div class="card">
-
-        <div class="label">Taskuri familie</div>
-
-        <div class="task">
-          <div class="check"></div>
-          <div>Plată factură gaz</div>
-        </div>
-
-        <div class="task">
-          <div class="check"></div>
-          <div>Programare dentist Ionuț</div>
-        </div>
-
-        <div class="task">
-          <div class="check"></div>
-          <div>Cumpărături supermarket</div>
-        </div>
-
-      </div>
-
-      <div class="card reward">
-
-        <div class="label">FamilyOS Junior</div>
-
-        <h2 style="margin:16px 0;font-family:'Playfair Display',serif">
-          Ana a completat toate taskurile 🎉
-        </h2>
-
-        <strong>
-          Aprobi recompensa?
-        </strong>
-
-        <button style="
-          margin-top:22px;
-          border:none;
-          background:var(--sage);
-          color:white;
-          padding:14px 22px;
-          border-radius:999px;
-          cursor:pointer;
-          font-weight:700;
-        ">
-          ✓ Aprobă recompensa
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
+<p id="today">
+Loading your day...
+</p>
 
 </div>
+
+<div class="right">
+
+<div class="weather" id="weather">
+☀️ Detecting city...
+</div>
+
+<div class="bell">
+🔔
+<div class="dot"></div>
+</div>
+
+</div>
+
+</div>
+
+<div class="content">
+
+<div class="panel active" id="dashboard">
+
+<div class="stats">
+
+<div class="card stat">
+<div class="mini-label">Economii luna aceasta</div>
+<div class="big">340 RON</div>
+<div class="small">↑ 12% vs luna trecută</div>
+</div>
+
+<div class="card stat">
+<div class="mini-label">Taskuri completate</div>
+<div class="big">14 / 18</div>
+<div class="small">4 rămase azi</div>
+</div>
+
+<div class="card stat">
+<div class="mini-label">Shopping list</div>
+<div class="big">9 items</div>
+<div class="small">3 adăugate recent</div>
+</div>
+
+<div class="card stat">
+<div class="mini-label">Stele copii</div>
+<div class="big">8 / 10 ⭐</div>
+<div class="small">Ana conduce azi 🎉</div>
+</div>
+
+</div>
+
+<div class="grid2">
+
+<div class="card chat">
+
+<div class="chat-head">
+
+<h3>
+🧠 Family Orchestrator
+</h3>
+
+<small>
+7 AI agents active
+</small>
+
+</div>
+
+<div class="messages" id="msgs">
+
+<div class="msg ai">
+<strong>FamilyOS</strong>
+Bună dimineața! Ana și-a terminat toate taskurile. Ionuț mai are matematica.
+</div>
+
+<div class="msg user">
+Adu-mi aminte mâine de factura la curent.
+</div>
+
+<div class="msg ai">
+<strong>FamilyOS</strong>
+Perfect. Trimit reminder și pe WhatsApp mâine la 09:00. ✅
+</div>
+
+</div>
+
+<div class="input">
+
+<input
+id="chatInput"
+placeholder="Scrie orice..."
+onkeydown="if(event.key==='Enter')sendMsg()"
+/>
+
+<button class="send" onclick="sendMsg()">
+↑
+</button>
+
+</div>
+
+</div>
+
+  <div class="side-stack">
+
+<div class="card">
+
+<div class="section-title">
+⚡ Acțiuni rapide
+</div>
+
+<div class="quick">
+
+<div class="quick-item">
+🛒 Adaugă pe lista de cumpărături
+</div>
+
+<div class="quick-item">
+📅 Creează eveniment familie
+</div>
+
+<div class="quick-item">
+📲 Trimite reminder WhatsApp
+</div>
+
+<div class="quick-item">
+🧒 Verifică taskurile copiilor
+</div>
+
+</div>
+
+</div>
+
+<div class="whatsapp-box">
+
+<h3 style="font-family:'Playfair Display',serif;margin-bottom:14px">
+📲 WhatsApp AI
+</h3>
+
+<div class="wa-msg">
+⚡ Factura la gaz expiră mâine.
+</div>
+
+<div class="wa-msg">
+🎂 Peste 3 zile este ziua mamei.
+</div>
+
+<div class="wa-msg">
+🧒 Ana a câștigat încă 5 stele azi!
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="panel" id="family">
+
+<div class="section-title" style="font-size:2rem;margin-bottom:28px">
+🧒 Nido Junior
+</div>
+
+<div class="family-grid">
+
+<div class="member">
+
+<div class="member-top">
+
+<div class="member-avatar">
+I
+</div>
+
+<div>
+<h4>Ionuț · 12 ani</h4>
+<small>18 stele săptămâna asta</small>
+</div>
+
+</div>
+
+<div class="stars">
+<div class="star">⭐ 3 azi</div>
+<div class="star">🏆 Record personal</div>
+</div>
+
+<div class="tasks">
+
+<div class="task done" onclick="toggleTask(this)">
+<div class="check">✓</div>
+<span>Mi-am făcut patul</span>
+</div>
+
+<div class="task done" onclick="toggleTask(this)">
+<div class="check">✓</div>
+<span>Mi-am făcut ghiozdanul</span>
+</div>
+
+<div class="task" onclick="toggleTask(this)">
+<div class="check"></div>
+<span>Tema la matematică</span>
+</div>
+
+</div>
+
+</div>
+
+<div class="member">
+
+<div class="member-top">
+
+<div class="member-avatar" style="background:#D86CA2">
+A
+</div>
+
+<div>
+<h4>Ana · 8 ani</h4>
+<small>23 stele săptămâna asta</small>
+</div>
+
+</div>
+
+<div class="stars">
+<div class="star">⭐ Perfect today</div>
+<div class="star">🎉 Toate taskurile</div>
+</div>
+
+<div class="tasks">
+
+<div class="task done">
+<div class="check">✓</div>
+<span>Citit 15 minute</span>
+</div>
+
+<div class="task done">
+<div class="check">✓</div>
+<span>Ajutor la masă</span>
+</div>
+
+<div class="task done">
+<div class="check">✓</div>
+<span>Spălat pe dinți</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="panel" id="money">
+
+<div class="section-title" style="font-size:2rem;margin-bottom:28px">
+💰 Economistul Casei
+</div>
+
+<div class="money-grid">
+
+<div class="card">
+
+<div class="bar">
+
+<div class="bar-top">
+<span>🛒 Mâncare</span>
+<span>820 / 1200 RON</span>
+</div>
+
+<div class="progress">
+<div class="fill" style="width:68%;background:var(--sage)"></div>
+</div>
+
+</div>
+
+<div class="bar">
+
+<div class="bar-top">
+<span>🏠 Utilități</span>
+<span>950 / 1000 RON</span>
+</div>
+
+<div class="progress">
+<div class="fill" style="width:95%;background:var(--gold)"></div>
+</div>
+
+</div>
+
+<div class="bar">
+
+<div class="bar-top">
+<span>🚗 Transport</span>
+<span>310 / 600 RON</span>
+</div>
+
+<div class="progress">
+<div class="fill" style="width:52%;background:var(--terracotta)"></div>
+</div>
+
+</div>
+
+<div class="bar">
+
+<div class="bar-top">
+<span>🎉 Fun</span>
+<span>280 / 400 RON</span>
+</div>
+
+<div class="progress">
+<div class="fill" style="width:70%;background:#7B68A8"></div>
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="alert green">
+<strong>💡 Netflix</strong>
+Economisești 45 RON/lună dacă schimbi planul.
+</div>
+
+<div class="alert orange">
+<strong>⚡ Curent electric</strong>
+Mută consumul după 22:00 și economisești ~80 RON.
+</div>
+
+<div class="alert gold">
+<strong>🛒 Lidl Family Week</strong>
+Reduceri detectate pentru produsele familiei tale.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="panel" id="orchestrator">
+
+<div class="card chat" style="min-height:620px">
+
+<div class="chat-head">
+
+<h3>
+🧠 FamilyOS Orchestrator
+</h3>
+
+<small>
+thinking for the whole family
+</small>
+
+</div>
+
+<div class="messages" id="bigMsgs" style="max-height:470px">
+
+<div class="msg ai">
+<strong>FamilyOS</strong>
+Salut! Coordonez calendarul, copiii, finanțele și reminder-ele familiei. 😊
+</div>
+
+</div>
+
+<div class="input">
+
+<input
+id="bigInput"
+placeholder="Spune orice..."
+onkeydown="if(event.key==='Enter')sendBig()"
+/>
+
+<button class="send" onclick="sendBig()">
+↑
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="panel" id="whatsapp">
+
+<div class="section-title" style="font-size:2rem;margin-bottom:28px">
+📲 WhatsApp AI Notifications
+</div>
+
+<div class="card">
+
+<div class="wa-msg">
+⚡ Reminder: factura la internet expiră mâine.
+</div>
+
+<div class="wa-msg">
+🧒 Ionuț nu și-a terminat tema la matematică.
+</div>
+
+<div class="wa-msg">
+🎂 Duminică este ziua bunicii.
+</div>
+
+<div class="wa-msg">
+🛒 Chef recomandă cumpărături mâine la Lidl.
+</div>
+
+<div class="wa-msg">
+🚗 Revizia Daciei este peste 14 zile.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</main>
 
 <script>
 
-/* CHAT */
+const greetings = {
+ro:'Bună dimineața',
+it:'Buongiorno',
+fr:'Bonjour',
+de:'Guten Morgen',
+es:'Buenos días',
+en:'Welcome back'
+};
 
-function sendMessage(){
+const lang = navigator.language.slice(0,2);
 
-  const input = document.getElementById('messageInput');
-  const messages = document.getElementById('messages');
+const hello =
+greetings[lang] || greetings.en;
 
-  if(!input.value.trim()) return;
+document.getElementById('hello').innerHTML =
+'👋 '+hello+', <em>family!</em>';
 
-  const user = document.createElement('div');
-  user.className='msg user';
-  user.textContent=input.value;
+const now = new Date();
 
-  messages.appendChild(user);
-
-  input.value='';
-
-  setTimeout(()=>{
-
-    const ai = document.createElement('div');
-    ai.className='msg ai';
-
-    const responses=[
-      'Am înțeles. Reminder creat și sincronizat. ✅',
-      'Perfect. Am notificat familia pe WhatsApp.',
-      'Task adăugat în calendarul familiei.',
-      'Chef-ul inteligent se ocupă deja.'
-    ];
-
-    ai.textContent = responses[Math.floor(Math.random()*responses.length)];
-
-    messages.appendChild(ai);
-
-    messages.scrollTop = messages.scrollHeight;
-
-  },900);
-
+document.getElementById('today').innerHTML =
+now.toLocaleDateString(
+navigator.language,
+{
+weekday:'long',
+day:'numeric',
+month:'long'
 }
+);
 
-/* LANGUAGE DETECTION */
-
-const lang = navigator.language || 'en';
-
-document.documentElement.lang = lang;
-
-/* WEATHER + CITY */
-
-function setWeather(city){
-
-  document.getElementById('weatherBox').innerHTML =
-    '☀️ 22°C · ' + city;
-
-}
+function fakeWeather(){
 
 if(navigator.geolocation){
 
-  navigator.geolocation.getCurrentPosition((pos)=>{
+navigator.geolocation.getCurrentPosition(()=>{
 
-    setWeather('Your City');
+document.getElementById('weather').innerHTML =
+'☀️ 22°C · Auto detected';
 
-  },()=>{
-
-    setWeather('Europe');
-
-  });
+});
 
 }else{
 
-  setWeather('Europe');
+document.getElementById('weather').innerHTML =
+'☀️ Weather unavailable';
+
+}
+
+}
+
+fakeWeather();
+
+function showPanel(id,el){
+
+document.querySelectorAll('.panel')
+.forEach(p=>p.classList.remove('active'));
+
+document.getElementById(id)
+.classList.add('active');
+
+document.querySelectorAll('.nav')
+.forEach(n=>n.classList.remove('active'));
+
+el.classList.add('active');
+
+}
+
+function sendMsg(){
+
+const input =
+document.getElementById('chatInput');
+
+const val = input.value.trim();
+
+if(!val) return;
+
+const msgs =
+document.getElementById('msgs');
+
+const div =
+document.createElement('div');
+
+div.className='msg user';
+div.textContent=val;
+
+msgs.appendChild(div);
+
+input.value='';
+
+setTimeout(()=>{
+
+const ai =
+document.createElement('div');
+
+ai.className='msg ai';
+
+const responses = [
+
+'Perfect. Mă ocup imediat. ✅',
+
+'Gata. Familia a fost notificată.',
+
+'Reminder programat pe WhatsApp. 📲',
+
+'Am actualizat calendarul familiei.',
+
+'Chef și Economist au primit taskul.'
+
+];
+
+ai.innerHTML =
+'<strong>FamilyOS</strong>'+
+responses[Math.floor(Math.random()*responses.length)];
+
+msgs.appendChild(ai);
+
+msgs.scrollTop=msgs.scrollHeight;
+
+},700);
+
+}
+
+function sendBig(){
+
+const input =
+document.getElementById('bigInput');
+
+const val = input.value.trim();
+
+if(!val) return;
+
+const msgs =
+document.getElementById('bigMsgs');
+
+const div =
+document.createElement('div');
+
+div.className='msg user';
+div.textContent=val;
+
+msgs.appendChild(div);
+
+input.value='';
+
+setTimeout(()=>{
+
+const ai =
+document.createElement('div');
+
+ai.className='msg ai';
+
+ai.innerHTML =
+'<strong>FamilyOS</strong>'+
+'Înțeles. Coordonăm totul automat pentru familie. 🪺';
+
+msgs.appendChild(ai);
+
+msgs.scrollTop=msgs.scrollHeight;
+
+},800);
+
+}
+
+function toggleTask(el){
+
+el.classList.toggle('done');
+
+const c = el.querySelector('.check');
+
+c.textContent =
+el.classList.contains('done')
+? '✓'
+: '';
 
 }
 
