@@ -1366,5 +1366,167 @@ el.classList.contains('done')
 
 </script>
 
+  <script>
+
+const input = document.querySelector('input');
+const sendBtn = document.querySelector('.send-btn');
+
+const orchestrator = document.querySelector('.orchestrator-chat');
+
+const quickTasks = document.querySelector('.quick-tasks');
+
+function addBubble(text,type='ai'){
+
+const bubble = document.createElement('div');
+
+bubble.className = type === 'user'
+? 'bubble user'
+: 'bubble ai';
+
+bubble.innerText = text;
+
+orchestrator.appendChild(bubble);
+
+orchestrator.scrollTop = orchestrator.scrollHeight;
+
+}
+
+function addTask(text){
+
+const item = document.createElement('div');
+
+item.className='task-item';
+
+item.innerHTML = `
+<span>✨</span>
+<p>${text}</p>
+`;
+
+quickTasks.prepend(item);
+
+}
+
+function fakeAI(message){
+
+const msg = message.toLowerCase();
+
+if(msg.includes('lapte')){
+
+setTimeout(()=>{
+
+addBubble('Am adăugat laptele pe lista de cumpărături 🥛');
+
+addTask('Laptele a fost adăugat pe shopping list');
+
+},900);
+
+}
+
+else if(msg.includes('factura')){
+
+setTimeout(()=>{
+
+addBubble('Factura a fost salvată și voi trimite reminder automat ⚡');
+
+addTask('Reminder factură activat');
+
+},900);
+
+}
+
+else if(msg.includes('copii')){
+
+setTimeout(()=>{
+
+addBubble('Am sincronizat taskurile copiilor pentru azi 🧒');
+
+addTask('Taskuri copii actualizate');
+
+},900);
+
+}
+
+else{
+
+setTimeout(()=>{
+
+addBubble('FamilyOS a procesat cererea și sincronizează agenții 🤖');
+
+addTask('Orchestrator activ');
+
+},900);
+
+}
+
+}
+
+function sendMessage(){
+
+const value = input.value.trim();
+
+if(!value) return;
+
+addBubble(value,'user');
+
+input.value='';
+
+setTimeout(()=>{
+
+addBubble('FamilyOS gândește...');
+
+},400);
+
+setTimeout(()=>{
+
+const bubbles = document.querySelectorAll('.bubble.ai');
+
+bubbles[bubbles.length-1].remove();
+
+fakeAI(value);
+
+},1200);
+
+}
+
+sendBtn.addEventListener('click',sendMessage);
+
+input.addEventListener('keypress',e=>{
+
+if(e.key==='Enter'){
+sendMessage();
+}
+
+});
+
+function greeting(){
+
+const h = new Date().getHours();
+
+const title = document.querySelector('.hero-title');
+
+if(h < 12){
+
+title.innerHTML = '☀️ Bună dimineața, familia!';
+
+}
+
+else if(h < 18){
+
+title.innerHTML = '🌤️ Bună ziua, familia!';
+
+}
+
+else{
+
+title.innerHTML = '🌙 Bună seara, familia!';
+
+}
+
+}
+
+greeting();
+
+</script>
+
 </body>
 </html>
