@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FamilyOS — Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --cream:#F5F0E8;
+  --white:#FDFAF5;
+  --terracotta:#C4622D;
+  --terracotta-light:#E8855A;
+  --sage:#6B7F5E;
+  --charcoal:#232323;
+  --gray:#6B6560;
+  --sand:#D4C5A9;
+  --gold:#B8943F;
+  --sidebar:270px;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--cream);
+  color:var(--charcoal);
+  display:flex;
+  height:100vh;
+  overflow:hidden;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+  width:var(--sidebar);
+  background:var(--charcoal);
+  color:white;
+  padding:28px 0;
+  display:flex;
+  flex-direction:column;
+}
+
+.logo{
+  padding:0 28px;
+  font-family:'Playfair Display',serif;
+  font-size:1.8rem;
+  font-weight:900;
+  margin-bottom:6px;
+}
+
+.logo span{
+  color:var(--terracotta);
+}
+
+.tag{
+  padding:0 28px;
+  color:rgba(255,255,255,.35);
+  font-size:.75rem;
+  margin-bottom:34px;
+}
+
+.nav{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:14px 28px;
+  cursor:pointer;
+  transition:.2s;
+  border-left:3px solid transparent;
+}
+
+.nav:hover{
+  background:rgba(255,255,255,.05);
+}
+
+.nav.active{
+  background:rgba(196,98,45,.12);
+  border-left-color:var(--terracotta);
+}
+
+.nav-icon{
+  width:36px;
+  height:36px;
+  border-radius:12px;
+  background:rgba(255,255,255,.08);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.nav span{
+  color:rgba(255,255,255,.72);
+  font-size:.92rem;
+}
+
+.bottom{
+  margin-top:auto;
+  padding:0 18px;
+}
+
+.profile{
+  background:rgba(255,255,255,.06);
+  border-radius:18px;
+  padding:16px;
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+
+.avatar{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:var(--terracotta);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+}
+
+.profile small{
+  color:rgba(255,255,255,.4);
+}
+
+/* MAIN */
+
+.main{
+  flex:1;
+  overflow-y:auto;
+}
+
+.top{
+  background:rgba(253,250,245,.88);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(212,197,169,.4);
+  padding:24px 36px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.top h1{
+  font-family:'Playfair Display',serif;
+  font-size:2rem;
+}
+
+.top h1 em{
+  color:var(--terracotta);
+  font-style:italic;
+}
+
+.top p{
+  color:var(--gray);
+  margin-top:4px;
+}
+
+.weather{
+  background:var(--white);
+  border:1px solid var(--sand);
+  border-radius:999px;
+  padding:12px 18px;
+  font-size:.9rem;
+}
+
+.content{
+  padding:36px;
+}
+
+/* CARDS */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+  margin-bottom:24px;
+}
+
+.card{
+  background:white;
+  border-radius:26px;
+  padding:26px;
+  border:1px solid rgba(212,197,169,.45);
+}
+
+.stat strong{
+  display:block;
+  font-family:'Playfair Display',serif;
+  font-size:2.3rem;
+  margin:10px 0 6px;
+}
+
+.stat small{
+  color:var(--gray);
+}
+
+.label{
+  color:var(--gray);
+  text-transform:uppercase;
+  letter-spacing:1px;
+  font-size:.7rem;
+  font-weight:700;
+}
+
+/* GRID */
+
+.grid{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:22px;
+  margin-bottom:24px;
+}
+
+.chat{
+  background:var(--charcoal);
+  color:white;
+  border-radius:30px;
+  padding:28px;
+}
+
+.chat-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:20px;
+}
+
+.chat-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.4rem;
+}
+
+.messages{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  margin-bottom:20px;
+}
+
+.msg{
+  max-width:82%;
+  padding:16px 18px;
+  border-radius:20px;
+  line-height:1.5;
+}
+
+.user{
+  background:var(--terracotta);
+  margin-left:auto;
+}
+
+.ai{
+  background:rgba(255,255,255,.08);
+  color:rgba(255,255,255,.82);
+}
+
+.input{
+  display:flex;
+  gap:10px;
+}
+
+.input input{
+  flex:1;
+  border:none;
+  outline:none;
+  background:rgba(255,255,255,.08);
+  border-radius:999px;
+  padding:14px 18px;
+  color:white;
+}
+
+.input button{
+  width:48px;
+  border:none;
+  border-radius:50%;
+  background:var(--terracotta);
+  color:white;
+  cursor:pointer;
+}
+
+/* RIGHT */
+
+.stack{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.calendar{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:6px;
+  margin-top:18px;
+}
+
+.day{
+  aspect-ratio:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:12px;
+  font-size:.82rem;
+  color:var(--gray);
+}
+
+.today{
+  background:var(--terracotta);
+  color:white;
+  font-weight:700;
+}
+
+.agent-list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top:18px;
+}
+
+.agent{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:14px;
+  border-radius:16px;
+  background:var(--cream);
+}
+
+.agent-icon{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  background:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.2rem;
+}
+
+.agent small{
+  color:var(--gray);
+}
+
+/* TASKS */
+
+.tasks{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+}
+
+.task{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:14px;
+  background:var(--cream);
+  border-radius:16px;
+  margin-top:12px;
+}
+
+.check{
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  border:2px solid var(--sand);
+}
+
+.reward{
+  background:rgba(107,127,94,.12);
+}
+
+.reward strong{
+  color:var(--sage);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+
+  body{
+    flex-direction:column;
+  }
+
+  .sidebar{
+    width:100%;
+    height:auto;
+  }
+
+  .stats{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .grid,
+  .tasks{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:700px){
+
+  .stats{
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+  <div class="logo">
+    Family<span>OS</span>
+  </div>
+
+  <div class="tag">
+    Familia ta. Organizată. Mereu. Automat.
+  </div>
+
+  <div class="nav active">
+    <div class="nav-icon">🏠</div>
+    <span>Dashboard</span>
+  </div>
+
+  <div class="nav">
+    <div class="nav-icon">🧠</div>
+    <span>Orchestrator</span>
+  </div>
+
+  <div class="nav">
+    <div class="nav-icon">👨‍🍳</div>
+    <span>Chef Inteligent</span>
+  </div>
+
+  <div class="nav">
+    <div class="nav-icon">💰</div>
+    <span>Economistul Casei</span>
+  </div>
+
+  <div class="nav">
+    <div class="nav-icon">🧒</div>
+    <span>FamilyOS Junior</span>
+  </div>
+
+  <div class="nav">
+    <div class="nav-icon">📸</div>
+    <span>Memory Keeper</span>
+  </div>
+
+  <div class="nav">
+    <div class="nav-icon">⚙️</div>
+    <span>Setări</span>
+  </div>
+
+  <div class="bottom">
+    <div class="profile">
+      <div class="avatar">A</div>
+      <div>
+        <div>Familia Andrei</div>
+        <small>4 membri activi</small>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- MAIN -->
+
+<div class="main">
+
+  <div class="top">
+
+    <div>
+      <h1>Bună dimineața, <em>familia!</em></h1>
+      <p id="dateText">FamilyOS sincronizează tot pentru azi.</p>
+    </div>
+
+    <div class="weather" id="weatherBox">
+      ☀️ Detecting weather...
+    </div>
+
+  </div>
+
+  <div class="content">
+
+    <!-- STATS -->
+
+    <div class="stats">
+
+      <div class="card stat">
+        <div class="label">Economisit luna asta</div>
+        <strong>340 RON</strong>
+        <small>↑ 12% vs luna trecută</small>
+      </div>
+
+      <div class="card stat">
+        <div class="label">Taskuri completate</div>
+        <strong>14/18</strong>
+        <small>4 rămase azi</small>
+      </div>
+
+      <div class="card stat">
+        <div class="label">Copii</div>
+        <strong>8⭐</strong>
+        <small>Ana conduce azi 🎉</small>
+      </div>
+
+      <div class="card stat">
+        <div class="label">Reminder</div>
+        <strong>2</strong>
+        <small>Facturi în 3 zile</small>
+      </div>
+
+    </div>
+
+    <!-- MAIN GRID -->
+
+    <div class="grid">
+
+      <!-- CHAT -->
+
+      <div class="chat">
+
+        <div class="chat-head">
+          <div class="chat-title">🧠 Orchestrator</div>
+          <small>7 agenți activi</small>
+        </div>
+
+        <div class="messages" id="messages">
+
+          <div class="msg ai">
+            Bună dimineața! Ana a completat toate taskurile azi. Factura la gaz vine în 3 zile.
+          </div>
+
+          <div class="msg user">
+            Adu-mi aminte mâine de dentistul lui Ionuț.
+          </div>
+
+          <div class="msg ai">
+            Gata. Reminder adăugat și trimis și pe WhatsApp. ✅
+          </div>
+
+        </div>
+
+        <div class="input">
+          <input id="messageInput" placeholder="Scrie orice către FamilyOS...">
+          <button onclick="sendMessage()">↑</button>
+        </div>
+
+      </div>
+
+      <!-- RIGHT -->
+
+      <div class="stack">
+
+        <div class="card">
+
+          <div class="label">Mai 2026</div>
+
+          <div class="calendar">
+
+            <div class="day">1</div>
+            <div class="day">2</div>
+            <div class="day">3</div>
+            <div class="day">4</div>
+            <div class="day">5</div>
+            <div class="day">6</div>
+            <div class="day today">7</div>
+
+            <div class="day">8</div>
+            <div class="day">9</div>
+            <div class="day">10</div>
+            <div class="day">11</div>
+            <div class="day">12</div>
+            <div class="day">13</div>
+            <div class="day">14</div>
+
+          </div>
+
+        </div>
+
+        <div class="card">
+
+          <div class="label">Agenți activi</div>
+
+          <div class="agent-list">
+
+            <div class="agent">
+              <div class="agent-icon">👨‍🍳</div>
+              <div>
+                <div>Chef Inteligent</div>
+                <small>Meniul e gata</small>
+              </div>
+            </div>
+
+            <div class="agent">
+              <div class="agent-icon">💰</div>
+              <div>
+                <div>Economist</div>
+                <small>3 economii detectate</small>
+              </div>
+            </div>
+
+            <div class="agent">
+              <div class="agent-icon">🧒</div>
+              <div>
+                <div>FamilyOS Junior</div>
+                <small>Ana: 5⭐ azi</small>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- TASKS -->
+
+    <div class="tasks">
+
+      <div class="card">
+
+        <div class="label">Taskuri familie</div>
+
+        <div class="task">
+          <div class="check"></div>
+          <div>Plată factură gaz</div>
+        </div>
+
+        <div class="task">
+          <div class="check"></div>
+          <div>Programare dentist Ionuț</div>
+        </div>
+
+        <div class="task">
+          <div class="check"></div>
+          <div>Cumpărături supermarket</div>
+        </div>
+
+      </div>
+
+      <div class="card reward">
+
+        <div class="label">FamilyOS Junior</div>
+
+        <h2 style="margin:16px 0;font-family:'Playfair Display',serif">
+          Ana a completat toate taskurile 🎉
+        </h2>
+
+        <strong>
+          Aprobi recompensa?
+        </strong>
+
+        <button style="
+          margin-top:22px;
+          border:none;
+          background:var(--sage);
+          color:white;
+          padding:14px 22px;
+          border-radius:999px;
+          cursor:pointer;
+          font-weight:700;
+        ">
+          ✓ Aprobă recompensa
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+/* CHAT */
+
+function sendMessage(){
+
+  const input = document.getElementById('messageInput');
+  const messages = document.getElementById('messages');
+
+  if(!input.value.trim()) return;
+
+  const user = document.createElement('div');
+  user.className='msg user';
+  user.textContent=input.value;
+
+  messages.appendChild(user);
+
+  input.value='';
+
+  setTimeout(()=>{
+
+    const ai = document.createElement('div');
+    ai.className='msg ai';
+
+    const responses=[
+      'Am înțeles. Reminder creat și sincronizat. ✅',
+      'Perfect. Am notificat familia pe WhatsApp.',
+      'Task adăugat în calendarul familiei.',
+      'Chef-ul inteligent se ocupă deja.'
+    ];
+
+    ai.textContent = responses[Math.floor(Math.random()*responses.length)];
+
+    messages.appendChild(ai);
+
+    messages.scrollTop = messages.scrollHeight;
+
+  },900);
+
+}
+
+/* LANGUAGE DETECTION */
+
+const lang = navigator.language || 'en';
+
+document.documentElement.lang = lang;
+
+/* WEATHER + CITY */
+
+function setWeather(city){
+
+  document.getElementById('weatherBox').innerHTML =
+    '☀️ 22°C · ' + city;
+
+}
+
+if(navigator.geolocation){
+
+  navigator.geolocation.getCurrentPosition((pos)=>{
+
+    setWeather('Your City');
+
+  },()=>{
+
+    setWeather('Europe');
+
+  });
+
+}else{
+
+  setWeather('Europe');
+
+}
+
+</script>
+
+</body>
+</html>
