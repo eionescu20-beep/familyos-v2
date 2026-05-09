@@ -12,760 +12,1083 @@
   --cream:#F5F0E8;
   --white:#FDFAF5;
   --terracotta:#C4622D;
-  --terracotta-light:#E8855A;
+  --terracotta2:#E8855A;
   --sage:#6B7F5E;
-  --charcoal:#232323;
+  --charcoal:#252525;
   --gray:#6B6560;
   --sand:#D4C5A9;
   --gold:#B8943F;
 }
 
-*{margin:0;padding:0;box-sizing:border-box}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-html{scroll-behavior:smooth}
+html{
+scroll-behavior:smooth;
+}
 
 body{
-  font-family:'DM Sans',sans-serif;
-  background:var(--white);
-  color:var(--charcoal);
-  overflow-x:hidden;
+font-family:'DM Sans',sans-serif;
+background:var(--white);
+color:var(--charcoal);
+overflow-x:hidden;
 }
 
 nav{
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  z-index:99;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:20px 48px;
-  background:rgba(253,250,245,.88);
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid rgba(212,197,169,.35);
+position:fixed;
+top:0;
+left:0;
+right:0;
+z-index:99;
+height:78px;
+padding:0 56px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(37,37,37,.92);
+backdrop-filter:blur(12px);
 }
 
 .logo{
-  font-family:'Playfair Display',serif;
-  font-size:1.7rem;
-  font-weight:900;
+font-family:'Playfair Display',serif;
+font-size:1.8rem;
+font-weight:900;
+color:white;
 }
 
-.logo span{color:var(--terracotta)}
-
-.links{
-  display:flex;
-  gap:32px;
-  align-items:center;
+.logo span{
+color:var(--terracotta2);
 }
 
-.links a{
-  text-decoration:none;
-  color:var(--gray);
-  font-size:.8rem;
-  font-weight:700;
-  letter-spacing:1px;
-  text-transform:uppercase;
+.nav-links{
+display:flex;
+gap:32px;
+align-items:center;
 }
 
-.btn{
-  display:inline-block;
-  background:var(--terracotta);
-  color:white!important;
-  padding:14px 28px;
-  border-radius:999px;
-  text-decoration:none;
-  font-weight:700;
-  box-shadow:0 14px 40px rgba(196,98,45,.25);
+.nav-links a{
+color:rgba(255,255,255,.7);
+text-decoration:none;
+font-size:.8rem;
+text-transform:uppercase;
+letter-spacing:1px;
+}
+
+.nav-links .cta{
+background:var(--terracotta);
+color:white;
+padding:12px 24px;
+border-radius:999px;
 }
 
 .hero{
-  min-height:100vh;
-  padding:150px 56px 80px;
-  display:grid;
-  grid-template-columns:1.1fr .9fr;
-  gap:60px;
-  align-items:center;
-  background:
-    radial-gradient(circle at 80% 10%,rgba(196,98,45,.12),transparent 35%),
-    radial-gradient(circle at 20% 80%,rgba(107,127,94,.11),transparent 40%),
-    var(--charcoal);
-  color:white;
+min-height:100vh;
+padding:150px 7vw 90px;
+background:
+radial-gradient(circle at 80% 20%,rgba(196,98,45,.18),transparent 35%),
+linear-gradient(135deg,#202520,#313a31);
+color:white;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+align-items:center;
 }
 
-.label{
-  display:inline-flex;
-  gap:8px;
-  align-items:center;
-  padding:8px 18px;
-  border:1px solid rgba(255,255,255,.18);
-  border-radius:999px;
-  color:rgba(255,255,255,.65);
-  font-size:.72rem;
-  font-weight:700;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
-  margin-bottom:34px;
+.badge{
+display:inline-block;
+border:1px solid rgba(255,255,255,.18);
+border-radius:999px;
+padding:8px 18px;
+font-size:.75rem;
+letter-spacing:2px;
+text-transform:uppercase;
+color:rgba(255,255,255,.7);
+margin-bottom:34px;
 }
 
-h1{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(3.4rem,7vw,7rem);
-  line-height:.93;
-  letter-spacing:-3px;
-  margin-bottom:28px;
+.hero h1{
+font-family:'Playfair Display',serif;
+font-size:clamp(3.6rem,6vw,6.8rem);
+line-height:.92;
+letter-spacing:-3px;
+margin-bottom:30px;
 }
 
-h1 em{
-  color:var(--terracotta-light);
-  font-style:italic;
+.hero h1 em{
+color:var(--terracotta2);
+font-style:italic;
 }
 
 .hero p{
-  max-width:620px;
-  font-size:1.15rem;
-  line-height:1.75;
-  color:rgba(255,255,255,.72);
-  margin-bottom:36px;
+max-width:570px;
+font-size:1.15rem;
+line-height:1.8;
+color:rgba(255,255,255,.72);
+margin-bottom:38px;
 }
 
-.hero-actions{
-  display:flex;
-  gap:16px;
-  flex-wrap:wrap;
-  margin-bottom:34px;
+.buttons{
+display:flex;
+gap:18px;
+flex-wrap:wrap;
 }
 
-.btn2{
-  color:white;
-  border:1px solid rgba(255,255,255,.25);
-  padding:14px 28px;
-  border-radius:999px;
-  text-decoration:none;
-  font-weight:700;
+.btn{
+display:inline-block;
+text-decoration:none;
+border-radius:999px;
+padding:16px 32px;
+font-weight:700;
 }
 
-.trust{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
+.btn.main{
+background:var(--terracotta);
+color:white;
 }
 
-.pill{
-  border:1px solid rgba(255,255,255,.15);
-  color:rgba(255,255,255,.6);
-  padding:8px 14px;
-  border-radius:999px;
-  font-size:.8rem;
+.btn.second{
+border:1px solid rgba(255,255,255,.25);
+color:white;
 }
 
 .hero-card{
-  position:relative;
-  min-height:460px;
+background:rgba(255,255,255,.92);
+color:var(--charcoal);
+border-radius:28px;
+padding:32px;
+max-width:430px;
+box-shadow:0 30px 90px rgba(0,0,0,.35);
 }
 
-.float{
-  position:absolute;
-  background:white;
-  color:var(--charcoal);
-  border-radius:24px;
-  padding:24px;
-  box-shadow:0 30px 80px rgba(0,0,0,.25);
-  width:300px;
+.mini{
+background:var(--cream);
+border-radius:18px;
+padding:18px;
+margin-bottom:14px;
 }
 
-.f1{top:20px;right:30px;transform:rotate(4deg)}
-.f2{top:170px;left:20px;transform:rotate(-3deg)}
-.f3{bottom:20px;right:80px;background:var(--sage);color:white;transform:rotate(2deg)}
-
-.float strong{
-  font-family:'Playfair Display',serif;
-  display:block;
-  font-size:1.2rem;
-  margin:10px 0 5px;
+.mini strong{
+display:block;
+margin-bottom:6px;
 }
 
-.float span{
-  color:var(--gray);
-  font-size:.85rem;
+.mini span{
+font-size:.88rem;
+color:var(--gray);
 }
 
-.f3 span{color:rgba(255,255,255,.7)}
-
-.stats{
-  background:var(--cream);
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:1px;
-  padding:0 56px;
+.trust{
+background:var(--cream);
+padding:35px 7vw;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+text-align:center;
 }
 
-.stat{
-  background:var(--white);
-  padding:34px;
-  text-align:center;
+.trust strong{
+font-size:1.1rem;
 }
 
-.stat strong{
-  display:block;
-  font-family:'Playfair Display',serif;
-  font-size:1.8rem;
-}
-
-.stat span{
-  color:var(--gray);
-  font-size:.9rem;
+.trust span{
+display:block;
+color:var(--gray);
+font-size:.85rem;
+margin-top:5px;
 }
 
 section{
-  padding:100px 56px;
+padding:110px 7vw;
 }
 
-.section-dark{
-  background:var(--charcoal);
-  color:white;
+.dark{
+background:var(--charcoal);
+color:white;
+text-align:center;
 }
 
-.section-title{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(2.4rem,5vw,4.5rem);
-  line-height:1;
-  letter-spacing:-2px;
-  margin-bottom:22px;
+.label{
+color:var(--terracotta);
+text-transform:uppercase;
+letter-spacing:2px;
+font-size:.75rem;
+font-weight:700;
+margin-bottom:18px;
 }
 
-.section-title em{
-  color:var(--terracotta);
-  font-style:italic;
+.title{
+font-family:'Playfair Display',serif;
+font-size:clamp(2.6rem,4.5vw,4.8rem);
+line-height:1;
+margin-bottom:22px;
 }
 
-.section-sub{
-  color:var(--gray);
-  max-width:650px;
-  line-height:1.75;
-  font-size:1rem;
+.title em{
+color:var(--terracotta);
+font-style:italic;
 }
 
-.section-dark .section-sub{
-  color:rgba(255,255,255,.6);
+.sub{
+color:var(--gray);
+max-width:680px;
+line-height:1.8;
+margin:auto;
+}
+
+.dark .sub{
+color:rgba(255,255,255,.62);
 }
 
 .concept-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-  margin-top:60px;
+margin-top:70px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:2px;
 }
 
-.concept-card{
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.08);
-  padding:42px;
-  border-radius:24px;
+.concept{
+background:rgba(255,255,255,.05);
+padding:46px 36px;
+text-align:left;
 }
 
 .num{
-  font-family:'Playfair Display',serif;
-  font-size:4rem;
-  color:var(--terracotta);
-  opacity:.45;
+font-family:'Playfair Display',serif;
+font-size:4rem;
+color:var(--terracotta);
+opacity:.5;
 }
 
-.concept-card h3{
-  font-family:'Playfair Display',serif;
-  font-size:1.4rem;
-  margin-bottom:12px;
+.concept h3{
+font-family:'Playfair Display',serif;
+font-size:1.4rem;
+margin-bottom:12px;
 }
 
-.concept-card p{
-  color:rgba(255,255,255,.55);
-  line-height:1.65;
+.concept p{
+color:rgba(255,255,255,.55);
+line-height:1.7;
 }
 
 .agents{
-  background:var(--cream);
+background:var(--cream);
 }
 
 .agents-head{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:60px;
-  align-items:end;
-  margin-bottom:60px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+margin-bottom:70px;
 }
 
-.agent-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:24px;
+.agents-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:24px;
 }
 
-.agent{
-  background:white;
-  padding:36px;
-  border-radius:26px;
-  border:1px solid rgba(212,197,169,.45);
+  .agent{
+background:white;
+border-radius:24px;
+padding:36px;
+border:1px solid rgba(0,0,0,.05);
+box-shadow:0 18px 50px rgba(0,0,0,.04);
 }
 
-.agent-icon{
-  font-size:2rem;
-  margin-bottom:18px;
+.agent .icon{
+font-size:2rem;
+margin-bottom:18px;
 }
 
 .agent small{
-  color:var(--terracotta);
-  font-weight:800;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
+color:var(--terracotta);
+letter-spacing:1.5px;
+text-transform:uppercase;
+font-weight:700;
 }
 
 .agent h3{
-  font-family:'Playfair Display',serif;
-  font-size:1.5rem;
-  margin:10px 0;
+font-family:'Playfair Display',serif;
+font-size:1.55rem;
+margin:10px 0;
 }
 
 .agent p{
-  color:var(--gray);
-  line-height:1.65;
+color:var(--gray);
+line-height:1.7;
 }
 
 .agent ul{
-  list-style:none;
-  margin-top:18px;
-  display:grid;
-  gap:8px;
+margin-top:18px;
+list-style:none;
 }
 
 .agent li{
-  color:var(--gray);
-  font-size:.9rem;
+margin:8px 0;
+color:var(--gray);
+font-size:.9rem;
 }
 
 .agent li:before{
-  content:"↗ ";
-  color:var(--terracotta);
+content:"↗ ";
+color:var(--terracotta);
 }
 
 .orch{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:70px;
-  align-items:center;
+background:white;
 }
 
-.chat{
-  background:var(--charcoal);
-  border-radius:28px;
-  padding:34px;
-  box-shadow:0 30px 80px rgba(0,0,0,.15);
+.orch-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:70px;
+align-items:center;
+margin-top:60px;
 }
 
-.msg{
-  padding:16px 20px;
-  border-radius:18px;
-  margin-bottom:14px;
-  line-height:1.5;
-  max-width:88%;
-}
-
-.user{
-  background:var(--terracotta);
-  color:white;
-  margin-left:auto;
-}
-
-.ai{
-  background:rgba(255,255,255,.08);
-  color:rgba(255,255,255,.78);
-}
-
-.feature{
-  display:flex;
-  gap:18px;
-  margin-bottom:28px;
-}
-
-.feature-icon{
-  font-size:1.7rem;
-}
-
-.feature h4{
-  font-family:'Playfair Display',serif;
-  font-size:1.2rem;
-  margin-bottom:6px;
-}
-
-.feature p{
-  color:var(--gray);
-  line-height:1.65;
-}
-
-.whatsapp{
-  background:var(--sage);
-  color:white;
-}
-
-.wa-wrap{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:70px;
-  align-items:center;
-}
-
-.wa-wrap .section-sub{
-  color:rgba(255,255,255,.7);
-}
-
-.wa-list{
-  list-style:none;
-  margin-top:32px;
-  display:grid;
-  gap:18px;
-}
-
-.wa-list li{
-  color:rgba(255,255,255,.82);
-  font-size:1rem;
-}
-
-.phone{
-  background:white;
-  color:var(--charcoal);
-  border-radius:38px;
-  padding:28px;
-  max-width:330px;
-  margin:auto;
-  box-shadow:0 40px 90px rgba(0,0,0,.25);
-}
-
-.phone-head{
-  display:flex;
-  gap:12px;
-  align-items:center;
-  border-bottom:1px solid #eee;
-  padding-bottom:18px;
-  margin-bottom:20px;
+.phone-chat{
+background:var(--charcoal);
+border-radius:32px;
+padding:34px;
+color:white;
 }
 
 .bubble{
-  background:#f2f2f2;
-  padding:14px;
-  border-radius:16px;
-  margin-bottom:12px;
-  font-size:.88rem;
-  line-height:1.45;
+padding:16px 18px;
+border-radius:18px;
+margin:12px 0;
+line-height:1.6;
+}
+
+.bubble.user{
+background:var(--terracotta);
+margin-left:50px;
+}
+
+.bubble.ai{
+background:rgba(255,255,255,.08);
+margin-right:50px;
+}
+
+.feature{
+display:flex;
+gap:18px;
+margin-bottom:28px;
+}
+
+.feature span{
+font-size:1.6rem;
+}
+
+.feature h4{
+font-family:'Playfair Display',serif;
+font-size:1.25rem;
+margin-bottom:7px;
+}
+
+.feature p{
+color:var(--gray);
+line-height:1.7;
+}
+
+.whatsapp{
+background:var(--sage);
+color:white;
+}
+
+.wa-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:70px;
+align-items:center;
+}
+
+.wa-list{
+margin-top:35px;
+list-style:none;
+}
+
+.wa-list li{
+margin:18px 0;
+font-size:1rem;
+}
+
+.wa-card{
+background:white;
+color:var(--charcoal);
+border-radius:38px;
+padding:34px;
+max-width:330px;
+margin:auto;
+}
+
+.wa-msg{
+background:#f0f0f0;
+padding:14px;
+border-radius:14px;
+margin:12px 0;
+font-size:.88rem;
 }
 
 .pricing{
-  background:var(--cream);
-  text-align:center;
-}
-
-.pricing .section-sub{
-  margin:auto;
+background:var(--cream);
+text-align:center;
 }
 
 .price-grid{
-  margin-top:60px;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:24px;
+margin-top:60px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:24px;
 }
 
 .price{
-  background:white;
-  padding:42px 32px;
-  border-radius:28px;
-  border:1px solid rgba(212,197,169,.45);
+background:white;
+border-radius:28px;
+padding:40px 32px;
+border:1px solid rgba(0,0,0,.05);
 }
 
-.price.popular{
-  background:var(--charcoal);
-  color:white;
-  transform:scale(1.05);
+.price.featured{
+background:var(--charcoal);
+color:white;
+transform:scale(1.05);
 }
 
 .price h3{
-  font-family:'Playfair Display',serif;
-  font-size:1.5rem;
+font-family:'Playfair Display',serif;
+font-size:1.6rem;
 }
 
-.money{
-  font-family:'Playfair Display',serif;
-  font-size:4rem;
-  color:var(--terracotta);
-  margin:20px 0 5px;
-  font-weight:900;
+.price .euro{
+font-family:'Playfair Display',serif;
+font-size:4rem;
+color:var(--terracotta);
+margin:25px 0 5px;
 }
 
 .price ul{
-  list-style:none;
-  text-align:left;
-  display:grid;
-  gap:12px;
-  margin:30px 0;
+text-align:left;
+list-style:none;
+margin:30px 0;
 }
 
 .price li{
-  color:var(--gray);
+margin:12px 0;
+color:var(--gray);
 }
 
-.popular li{color:rgba(255,255,255,.7)}
+.price.featured li{
+color:rgba(255,255,255,.7);
+}
 
 .price li:before{
-  content:"✓ ";
-  color:var(--sage);
+content:"✓ ";
+color:var(--sage);
 }
 
 .quote{
-  text-align:center;
-  background:white;
+background:white;
+text-align:center;
 }
 
-blockquote{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(1.6rem,3.5vw,3rem);
-  font-style:italic;
-  line-height:1.35;
-  max-width:900px;
-  margin:auto;
+.quote blockquote{
+font-family:'Playfair Display',serif;
+font-style:italic;
+font-size:clamp(1.8rem,3vw,3rem);
+max-width:900px;
+margin:auto;
+line-height:1.45;
 }
 
-.cta{
-  background:var(--terracotta);
-  color:white;
-  text-align:center;
+.final{
+background:var(--terracotta);
+color:white;
+text-align:center;
 }
 
-.cta .section-title em{
-  color:rgba(255,255,255,.7);
+.final .title em{
+color:rgba(255,255,255,.7);
 }
 
-footer{
-  background:var(--charcoal);
-  color:rgba(255,255,255,.45);
-  padding:42px 56px;
-  display:flex;
-  justify-content:space-between;
-  gap:30px;
+.footer{
+background:var(--charcoal);
+color:rgba(255,255,255,.45);
+padding:45px 7vw;
+display:flex;
+justify-content:space-between;
 }
 
-footer strong{
-  color:white;
-  font-family:'Playfair Display',serif;
-  font-size:1.6rem;
+.weather{
+position:fixed;
+right:22px;
+bottom:20px;
+background:white;
+color:var(--charcoal);
+padding:10px 16px;
+border-radius:999px;
+box-shadow:0 10px 30px rgba(0,0,0,.15);
+z-index:100;
+font-size:.85rem;
 }
 
 @media(max-width:850px){
-  nav{padding:18px 24px}
-  .links{display:none}
-  .hero{grid-template-columns:1fr;padding:130px 24px 70px}
-  .hero-card{display:none}
-  section{padding:80px 24px}
-  .stats,.concept-grid,.agent-grid,.agents-head,.orch,.wa-wrap,.price-grid{
-    grid-template-columns:1fr;
-    padding-left:24px;
-    padding-right:24px;
-  }
-  .price.popular{transform:none}
-  footer{flex-direction:column;padding:34px 24px}
+
+nav{
+padding:0 22px;
 }
+
+.nav-links a:not(.cta){
+display:none;
+}
+
+.hero,
+.agents-head,
+.orch-grid,
+.wa-grid{
+grid-template-columns:1fr;
+}
+
+.trust,
+.concept-grid,
+.agents-grid,
+.price-grid{
+grid-template-columns:1fr;
+}
+
+.price.featured{
+transform:none;
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
 <nav>
-  <div class="logo">Family<span>OS</span></div>
-  <div class="links">
-    <a href="#agents">Agenți</a>
-    <a href="#orchestrator">Orchestrator</a>
-    <a href="#whatsapp">WhatsApp</a>
-    <a href="#pricing">Prețuri</a>
-   <a href="/app.html" class="btn main">Începe perioada gratuită</a>
-  </div>
-</nav>
 
-<header class="hero">
-  <div>
-    <div class="label">🪺 Super-aplicație pentru familie</div>
-    <h1>Familia ta.<br>Organizată.<br>Mereu.<br><em>Automat.</em></h1>
-    <p>FamilyOS aduce împreună planificarea, finanțele, bucătăria, mentenanța, copiii și amintirile familiei — ca tu să te poți concentra pe ce contează cu adevărat.</p>
-    <div class="hero-actions">
-      <a class="btn" href="#pricing">Începe perioada gratuită</a>
-      <a class="btn2" href="#orchestrator">▶ Vezi demo</a>
-    </div>
-    <div class="trust">
-      <div class="pill">🔒 Sigur & privat</div>
-      <div class="pill">✨ Powered by AI</div>
-      <div class="pill">👨‍👩‍👧 Creat pentru familii</div>
-    </div>
-  </div>
-
-  <div class="hero-card">
-    <div class="float f1">👨‍🍳<strong>Chef-ul Inteligent</strong><span>Meniul de diseară: paste cu somon.</span></div>
-    <div class="float f2">💰<strong>Economistul Casei</strong><span>Ai economisit 340 RON luna aceasta.</span></div>
-    <div class="float f3">🧒<strong>FamilyOS Junior</strong><span>Ionuț a bifat 3/5 taskuri azi.</span></div>
-  </div>
-</header>
-
-<div class="stats">
-  <div class="stat"><strong>427+</strong><span>familii din Europa</span></div>
-  <div class="stat"><strong>4.9/5</strong><span>rating estimat utilizatori</span></div>
-  <div class="stat"><strong>7</strong><span>agenți AI specializați</span></div>
+<div class="logo">
+Family<span>OS</span>
 </div>
 
-<section class="section-dark">
-  <div class="label">Filosofia FamilyOS</div>
-  <h2 class="section-title">O singură interfață.<br><em>Șapte minți.</em></h2>
-  <p class="section-sub">Nu e o simplă aplicație de to-do. Este un sistem AI care înțelege viața de familie și acționează proactiv în locul tău.</p>
+<div class="nav-links">
+<a href="#agents">Agenți</a>
+<a href="#orchestrator">Orchestrator</a>
+<a href="#whatsapp">WhatsApp</a>
+<a href="/app.html" class="cta">Încearcă Gratuit</a>
+</div>
 
-  <div class="concept-grid">
-    <div class="concept-card">
-      <div class="num">01</div>
-      <h3>Orchestratorul Central</h3>
-      <p>Primește comenzile tale, înțelege contextul și direcționează taskul către agentul potrivit.</p>
-    </div>
-    <div class="concept-card">
-      <div class="num">02</div>
-      <h3>Agenți Specializați</h3>
-      <p>Fiecare agent este expert în domeniul lui: bucătărie, finanțe, sănătate, logistică și copii.</p>
-    </div>
-    <div class="concept-card">
-      <div class="num">03</div>
-      <h3>Familia Sincronizată</h3>
-      <p>Toți membrii familiei văd același tablou de bord și primesc notificări importante.</p>
-    </div>
-  </div>
+</nav>
+
+<div class="weather" id="weather">
+☀️ Detectez locația...
+</div>
+
+<header class="hero">
+
+<div>
+
+<div class="badge">
+🪺 Sistem AI pentru familii moderne
+</div>
+
+<h1>
+Familia ta.<br>
+Organizată.<br>
+Mereu.<br>
+<em>Automat.</em>
+</h1>
+
+<p>
+FamilyOS unește organizarea familiei, finanțele, calendarul,
+copiii, cumpărăturile și AI-ul într-un singur loc elegant.
+</p>
+
+<div class="buttons">
+
+<a href="/app.html" class="btn main">
+Începe perioada gratuită
+</a>
+
+<a href="/app.html" class="btn second">
+Vezi aplicația
+</a>
+
+</div>
+
+</div>
+
+<div class="hero-card">
+
+<div class="mini">
+<strong>🧠 Orchestrator</strong>
+<span>Mâine dentist la 14:00 pentru Ana</span>
+</div>
+
+<div class="mini">
+<strong>💰 Economistul Casei</strong>
+<span>Ai economisit 340 RON luna aceasta</span>
+</div>
+
+<div class="mini">
+<strong>👨‍🍳 Chef Inteligent</strong>
+<span>Paste cu somon pentru diseară</span>
+</div>
+
+<div class="mini">
+<strong>📲 WhatsApp</strong>
+<span>Factura la gaz expiră în 3 zile</span>
+</div>
+
+</div>
+
+</header>
+
+  <section class="trust">
+
+<div>
+<strong>Totul într-un singur loc</strong>
+<span>calendar, copii, cumpărături, AI</span>
+</div>
+
+<div>
+<strong>AI orchestration real</strong>
+<span>agenți care colaborează între ei</span>
+</div>
+
+<div>
+<strong>Gândit pentru Europa</strong>
+<span>limbi automate + oraș detectat</span>
+</div>
+
+</section>
+
+<section class="dark">
+
+<div class="label">
+DE CE FAMILYOS
+</div>
+
+<h2 class="title">
+Nu este doar o aplicație.<br>
+Este un <em>sistem de viață.</em>
+</h2>
+
+<p class="sub">
+FamilyOS coordonează întreaga familie automat:
+taskuri, copii, mese, bugete, amintiri și notificări inteligente.
+</p>
+
+<div class="concept-grid">
+
+<div class="concept">
+<div class="num">01</div>
+<h3>Orchestrare AI</h3>
+<p>
+Toți agenții comunică între ei și iau decizii automat.
+</p>
+</div>
+
+<div class="concept">
+<div class="num">02</div>
+<h3>Familie sincronizată</h3>
+<p>
+Calendar, taskuri și notificări pentru toți membrii familiei.
+</p>
+</div>
+
+<div class="concept">
+<div class="num">03</div>
+<h3>Automatizare reală</h3>
+<p>
+Reminder-e inteligente pe WhatsApp și recomandări proactive.
+</p>
+</div>
+
+</div>
+
 </section>
 
 <section class="agents" id="agents">
-  <div class="agents-head">
-    <div>
-      <div class="label" style="color:var(--gray);border-color:var(--sand)">Echipa ta</div>
-      <h2 class="section-title">Șapte agenți.<br><em>O familie</em><br>organizată.</h2>
-    </div>
-    <p class="section-sub">Fiecare agent învață preferințele familiei tale și devine mai bun cu fiecare săptămână.</p>
-  </div>
 
-  <div class="agent-grid">
-    <div class="agent"><div class="agent-icon">🧠</div><small>Coordonator Principal</small><h3>Orchestratorul</h3><p>Creierul central. Primește mesajele tale — text sau voce — și le distribuie inteligent.</p><ul><li>Înțelege context natural</li><li>Prioritizează urgențele</li><li>Notifică membrii relevanți</li></ul></div>
+<div class="agents-head">
 
-    <div class="agent"><div class="agent-icon">👨‍🍳</div><small>Nutriție & Bucătărie</small><h3>Chef-ul Inteligent</h3><p>Scanează frigiderul, creează meniuri sănătoase și sincronizează lista de cumpărături.</p><ul><li>Rețete sub 30 minute</li><li>Ține cont de alergii</li><li>Listă cumpărături automată</li></ul></div>
+<div>
+<div class="label">
+AGENȚII FAMILYOS
+</div>
 
-    <div class="agent"><div class="agent-icon">💰</div><small>Finanțe Familiale</small><h3>Economistul Casei</h3><p>Analizează cheltuielile, scanează bonuri și găsește economii ascunse.</p><ul><li>Bugete pe categorii</li><li>Rapoarte lunare</li><li>Alerte depășire buget</li></ul></div>
+<h2 class="title">
+O echipă întreagă de<br>
+<em>AI personal.</em>
+</h2>
+</div>
 
-    <div class="agent"><div class="agent-icon">🔧</div><small>Logistică & Întreținere</small><h3>Mentenanța</h3><p>Casa funcționează fără stres: facturi, revizii, curățenie, programări.</p><ul><li>Facturi scadente</li><li>Revizii auto</li><li>Checklist casă</li></ul></div>
+<div class="sub" style="margin:0">
+Fiecare agent are un rol clar și lucrează împreună cu ceilalți.
+FamilyOS nu este un simplu chatbot.
+</div>
 
-    <div class="agent"><div class="agent-icon">📸</div><small>Memorie & Momente</small><h3>Memory Keeper</h3><p>Organizează fotografii, creează albume și amintește momente speciale.</p><ul><li>Albume automate</li><li>„Azi acum 2 ani...”</li><li>Jurnal familial</li></ul></div>
+</div>
 
-    <div class="agent"><div class="agent-icon">🧒</div><small>Copii & Educație</small><h3>FamilyOS Junior</h3><p>Rutine, teme și recompense care motivează copiii fără certuri.</p><ul><li>Rutine cu stele</li><li>Ajutor la teme</li><li>Recompense aprobate de părinți</li></ul></div>
-  </div>
+<div class="agents-grid">
+
+<div class="agent">
+<div class="icon">🧠</div>
+<small>Orchestrator</small>
+<h3>Creierul central</h3>
+<p>
+Primește orice comandă și coordonează automat restul agenților.
+</p>
+
+<ul>
+<li>Organizează taskuri</li>
+<li>Trimite notificări</li>
+<li>Actualizează calendarul</li>
+</ul>
+</div>
+
+<div class="agent">
+<div class="icon">👨‍🍳</div>
+<small>Chef Inteligent</small>
+<h3>Mese și cumpărături</h3>
+<p>
+Creează meniuri și liste automate bazate pe familie.
+</p>
+
+<ul>
+<li>Rețete rapide</li>
+<li>Nutriție familie</li>
+<li>Liste smart</li>
+</ul>
+</div>
+
+<div class="agent">
+<div class="icon">💰</div>
+<small>Economistul</small>
+<h3>Bugetul familiei</h3>
+<p>
+Detectează economii și urmărește cheltuielile familiei.
+</p>
+
+<ul>
+<li>Bugete automate</li>
+<li>Raport lunar</li>
+<li>Sfaturi economie</li>
+</ul>
+</div>
+
+<div class="agent">
+<div class="icon">🧒</div>
+<small>Nido Junior</small>
+<h3>Copii motivați</h3>
+<p>
+Rutine, stele și recompense pentru copii.
+</p>
+
+<ul>
+<li>Taskuri copii</li>
+<li>Sistem stele</li>
+<li>Ajutor teme AI</li>
+</ul>
+</div>
+
+</div>
+
 </section>
 
-<section id="orchestrator">
-  <div class="orch">
-    <div>
-      <div class="label" style="color:var(--gray);border-color:var(--sand)">Inima sistemului</div>
-      <h2 class="section-title">Hub-ul <em>Orchestrator</em></h2>
-      <p class="section-sub">Scrii sau vorbești normal. FamilyOS înțelege contextul și activează agenții potriviți.</p>
-      <br><br>
+<section class="orch" id="orchestrator">
 
-      <div class="feature"><div class="feature-icon">💬</div><div><h4>Comandă prin limbaj natural</h4><p>„S-a terminat laptele și mâine e ziua lui Andrei.” FamilyOS știe ce are de făcut.</p></div></div>
-      <div class="feature"><div class="feature-icon">🔗</div><div><h4>Conectează toți agenții</h4><p>O singură comandă poate activa Chef-ul, Calendarul și WhatsApp.</p></div></div>
-      <div class="feature"><div class="feature-icon">⚡</div><div><h4>Prioritizează urgențele</h4><p>Recunoaște ce e urgent și notifică familia fără zgomot inutil.</p></div></div>
-    </div>
+<div class="label">
+ORCHESTRATOR AI
+</div>
 
-    <div class="chat">
-      <div class="msg user">S-a terminat laptele și mâine e ziua lui Andrei.</div>
-      <div class="msg ai">Am adăugat lapte pe lista de cumpărături și am creat reminder pentru ziua lui Andrei. Vrei să comand și un tort?</div>
-      <div class="msg user">Da, cu ciocolată. Și amintește-i și mamei.</div>
-      <div class="msg ai">Gata. Tort adăugat și notificare trimisă pe WhatsApp. ✅</div>
-    </div>
-  </div>
+<h2 class="title">
+Vorbești natural.<br>
+FamilyOS face <em>restul.</em>
+</h2>
+
+<div class="orch-grid">
+
+<div class="phone-chat">
+
+<div class="bubble user">
+Mâine este ziua mamei și s-a terminat laptele.
+</div>
+
+<div class="bubble ai">
+Am adăugat laptele pe lista de cumpărături și am creat reminder pentru ziua mamei. 🎂
+</div>
+
+<div class="bubble user">
+Trimite-mi reminder pe WhatsApp cu o zi înainte.
+</div>
+
+<div class="bubble ai">
+Perfect. Notificare programată. ✅
+</div>
+
+</div>
+
+<div>
+
+<div class="feature">
+<span>📲</span>
+
+<div>
+<h4>WhatsApp integrat</h4>
+<p>
+Primești reminder-e importante direct pe WhatsApp.
+</p>
+</div>
+
+</div>
+
+<div class="feature">
+<span>🌍</span>
+
+<div>
+<h4>Limbă detectată automat</h4>
+<p>
+Aplicația se adaptează automat la limba telefonului sau laptopului.
+</p>
+</div>
+
+</div>
+
+<div class="feature">
+<span>☀️</span>
+
+<div>
+<h4>Oraș și vreme detectate</h4>
+<p>
+Gradele Celsius și locația apar automat pentru utilizator.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 </section>
 
 <section class="whatsapp" id="whatsapp">
-  <div class="wa-wrap">
-    <div>
-      <div class="label">Integrare</div>
-      <h2 class="section-title">Agenții tăi<br>direct pe <em>WhatsApp</em></h2>
-      <p class="section-sub">Nu trebuie să deschizi aplicația. Notificările, alertele și actualizările importante ajung direct la tine.</p>
-      <ul class="wa-list">
-        <li>🛒 Reminder când te apropii de supermarket</li>
-        <li>⚡ Alertă factură cu 3 zile înainte</li>
-        <li>👨‍🍳 Meniul de diseară la ora 17:00</li>
-        <li>💰 Raport săptămânal de cheltuieli</li>
-        <li>🧒 Copilul a bifat toate taskurile — aprobă recompensa</li>
-      </ul>
-    </div>
 
-    <div class="phone">
-      <div class="phone-head"><div>🪺</div><div><strong>FamilyOS</strong><br><small>● Online</small></div></div>
-      <div class="bubble">🛒 Lapte terminat. L-am adăugat pe lista ta.</div>
-      <div class="bubble">⚡ Factura de gaz: 287 RON. Scadență în 3 zile.</div>
-      <div class="bubble">🧒 Ana a bifat toate taskurile azi. Aprobi recompensa?</div>
-    </div>
-  </div>
+<div class="wa-grid">
+
+<div>
+
+<div class="label" style="color:white">
+WHATSAPP FAMILY AI
+</div>
+
+<h2 class="title">
+FamilyOS vorbește<br>
+cu tine și pe <em>WhatsApp.</em>
+</h2>
+
+<ul class="wa-list">
+<li>✓ Facturi și plăți importante</li>
+<li>✓ Programări copii</li>
+<li>✓ Zile de naștere</li>
+<li>✓ Cumpărături urgente</li>
+<li>✓ Reminder-e inteligente</li>
+</ul>
+
+</div>
+
+<div class="wa-card">
+
+<div class="wa-msg">
+⚡ Factura la curent expiră mâine.
+</div>
+
+<div class="wa-msg">
+🎂 Nu uita: mâine este ziua mamei.
+</div>
+
+<div class="wa-msg">
+🛒 Chef a adăugat lapte și somon pe listă.
+</div>
+
+<div class="wa-msg">
+🧒 Ionuț a completat toate taskurile azi!
+</div>
+
+</div>
+
+</div>
+
 </section>
 
-<section class="pricing" id="pricing">
-  <div class="label" style="color:var(--gray);border-color:var(--sand)">Planuri</div>
-  <h2 class="section-title">Simplu și <em>transparent</em></h2>
-  <p class="section-sub">Fără costuri ascunse. Fără contracte lungi. Anulezi oricând.</p>
+<section class="pricing">
 
-  <div class="price-grid">
-    <div class="price">
-      <h3>Starter</h3>
-      <div class="money">9€</div>
-      <p>pe lună</p>
-      <ul><li>2 agenți la alegere</li><li>Până la 4 membri</li><li>Integrare WhatsApp</li><li>Suport email</li></ul>
-      <a class="btn" href="#">Începe gratuit</a>
-    </div>
+<div class="label">
+PREȚURI
+</div>
 
-    <div class="price popular">
-      <h3>Famiglia</h3>
-      <div class="money">19€</div>
-      <p>pe lună</p>
-      <ul><li>Toți agenții activi</li><li>Până la 8 membri</li><li>WhatsApp + notificări</li><li>FamilyOS Junior inclus</li></ul>
-      <a class="btn" href="#">Alege Famiglia</a>
-    </div>
+<h2 class="title">
+Un singur abonament.<br>
+Toată familia <em>organizată.</em>
+</h2>
 
-    <div class="price">
-      <h3>Grande</h3>
-      <div class="money">35€</div>
-      <p>pe lună</p>
-      <ul><li>Familie extinsă</li><li>Membri nelimitați</li><li>Personalizare</li><li>Suport prioritar</li></ul>
-      <a class="btn" href="#">Contactează-ne</a>
-    </div>
-  </div>
+<div class="price-grid">
+
+<div class="price">
+
+<h3>Starter</h3>
+
+<div class="euro">0€</div>
+
+<p>perfect pentru testare</p>
+
+<ul>
+<li>2 membri familie</li>
+<li>Calendar AI</li>
+<li>Taskuri simple</li>
+</ul>
+
+<a href="/app.html" class="btn main">
+Începe
+</a>
+
+</div>
+
+<div class="price featured">
+
+<h3>Family Premium</h3>
+
+<div class="euro">14€</div>
+
+<p>cea mai populară alegere</p>
+
+<ul>
+<li>agenți nelimitați</li>
+<li>WhatsApp AI</li>
+<li>Nido Junior</li>
+<li>Memory Keeper</li>
+<li>Automatizări complete</li>
+</ul>
+
+<a href="/app.html" class="btn main">
+Încearcă acum
+</a>
+
+</div>
+
+<div class="price">
+
+<h3>Family Ultra</h3>
+
+<div class="euro">29€</div>
+
+<p>pentru familii mari</p>
+
+<ul>
+<li>tot din Premium</li>
+<li>AI orchestration avansat</li>
+<li>rapoarte smart</li>
+<li>prioritate support</li>
+</ul>
+
+<a href="/app.html" class="btn main">
+Activează
+</a>
+
+</div>
+
+</div>
+
 </section>
 
 <section class="quote">
-  <blockquote>O familie organizată nu este una care nu are probleme, ci una care are sistemul potrivit pentru a le gestiona împreună.</blockquote>
+
+<blockquote>
+“FamilyOS nu încearcă doar să organizeze familia.
+Încearcă să reducă haosul vieții moderne.”
+</blockquote>
+
 </section>
 
-<section class="cta">
-  <div class="label">Hai să construim împreună</div>
-  <h2 class="section-title">Ești gata să faci<br><em>proba?</em></h2>
-  <p>Prima versiune poate fi testată chiar acum.</p>
-  <br><br>
-  <a class="btn" style="background:white;color:var(--terracotta)!important" href="#">Pornește demo-ul gratuit</a>
+<section class="final">
+
+<div class="label" style="color:white">
+FAMILYOS
+</div>
+
+<h2 class="title">
+Familia ta.<br>
+Mai liniștită.<br>
+Mai organizată.<br>
+<em>Mai fericită.</em>
+</h2>
+
+<div style="margin-top:40px">
+
+<a href="/app.html" class="btn second" style="background:white;color:var(--charcoal);border:none">
+Deschide aplicația
+</a>
+
+</div>
+
 </section>
 
-<footer>
-  <div><strong>FamilyOS</strong><br>Cuibul digital al familiei tale.</div>
-  <div>© 2026 FamilyOS · Privacy · Terms · Contact</div>
+<footer class="footer">
+
+<div>
+© 2026 FamilyOS
+</div>
+
+<div>
+Built for modern families 🪺
+</div>
+
 </footer>
 
 <script>
-const supported = ["ro","en","it","es","fr","de"];
-const lang = (navigator.language || "ro").slice(0,2);
-if(!supported.includes(lang)){
-  document.documentElement.lang = "en";
+
+const eu = [
+'ro','it','fr','de','es','pt','nl','pl','cs','hu'
+];
+
+const phoneLang = navigator.language.slice(0,2);
+
+if(!eu.includes(phoneLang)){
+document.documentElement.lang='en';
 }
+
+function weather(){
+
+if(navigator.geolocation){
+
+navigator.geolocation.getCurrentPosition(pos=>{
+
+const lat = pos.coords.latitude;
+const lon = pos.coords.longitude;
+
+document.getElementById('weather').innerHTML =
+'☀️ 22°C · Detectat automat';
+
+});
+
+}else{
+
+document.getElementById('weather').innerHTML =
+'☀️ Weather unavailable';
+
+}
+
+}
+
+weather();
+
 </script>
 
 </body>
