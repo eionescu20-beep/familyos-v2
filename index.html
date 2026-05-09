@@ -7,7 +7,7 @@
 <title>FamilyOS</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -53,67 +53,145 @@ body{
   color:var(--terracotta);
 }
 
+.weather{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  background:rgba(107,127,94,0.08);
+  padding:10px 16px;
+  border-radius:100px;
+  font-size:0.82rem;
+  font-weight:500;
+}
+
 .hero{
-  padding:60px 40px;
+  padding:70px 40px 40px;
+  max-width:1200px;
+  margin:auto;
 }
 
 .hero h1{
   font-family:'Playfair Display',serif;
-  font-size:3rem;
-  margin-bottom:10px;
+  font-size:5.2rem;
+  line-height:0.95;
+  letter-spacing:-3px;
+  margin-bottom:30px;
 }
 
-.hero h1 em{
+.hero h1 span{
   color:var(--terracotta);
-  font-style:italic;
 }
 
-.hero p{
-  font-size:1rem;
-  color:#666;
+.sub{
+  max-width:760px;
+  font-size:1.2rem;
+  line-height:1.8;
+  color:#4a4a4a;
+  margin-bottom:40px;
 }
 
-.weather{
-  background:var(--cream);
-  border:1px solid var(--sand);
-  padding:10px 18px;
-  border-radius:999px;
-  font-size:0.9rem;
+.btns{
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
+  margin-bottom:60px;
 }
 
-.cards{
-  padding:0 40px 40px;
+.btn{
+  padding:16px 28px;
+  border-radius:100px;
+  border:none;
+  cursor:pointer;
+  font-size:0.95rem;
+  font-weight:600;
+  transition:0.2s;
+}
+
+.btn-main{
+  background:var(--terracotta);
+  color:white;
+}
+
+.btn-main:hover{
+  transform:translateY(-2px);
+}
+
+.btn-sec{
+  background:white;
+  border:1px solid rgba(0,0,0,0.08);
+}
+
+.grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:18px;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:22px;
 }
 
 .card{
-  background:white;
-  border-radius:20px;
+  background:rgba(255,255,255,0.7);
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,0.6);
+  border-radius:24px;
   padding:24px;
-  border:1px solid rgba(0,0,0,0.05);
-  transition:0.2s;
+  transition:0.25s;
 }
 
 .card:hover{
   transform:translateY(-4px);
 }
 
+.icon{
+  font-size:2rem;
+  margin-bottom:14px;
+}
+
 .card h3{
-  margin-top:12px;
-  margin-bottom:8px;
-  font-size:1.1rem;
+  margin-bottom:10px;
+  font-size:1.05rem;
 }
 
 .card p{
-  color:#666;
   font-size:0.9rem;
-  line-height:1.5;
+  line-height:1.7;
+  color:#666;
 }
 
-.icon{
-  font-size:2rem;
+.footer{
+  text-align:center;
+  padding:60px 20px;
+  font-size:0.8rem;
+  color:#777;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero{
+  padding:50px 22px;
+}
+
+.hero h1{
+  font-size:3.2rem;
+}
+
+.sub{
+  font-size:1rem;
+}
+
+.topbar{
+  padding:18px 20px;
+}
+
+.logo{
+  font-size:1.3rem;
+}
+
+.weather{
+  font-size:0.7rem;
+  padding:8px 12px;
+}
+
 }
 
 </style>
@@ -122,164 +200,171 @@ body{
 <body>
 
 <div class="topbar">
-  <div class="logo">Family<span>OS</span></div>
 
-  <div class="weather" id="weather">
-    Loading weather...
+  <div class="logo">
+    Family<span>OS</span>
   </div>
+
+  <div class="weather">
+    ☀️ <span id="city">Detecting city...</span>
+  </div>
+
 </div>
 
 <section class="hero">
-  <h1 id="welcome">
-    Welcome back, <em>family</em>.
+
+  <h1 id="heroTitle">
+    Your family.<br>
+    Organized.<br>
+    Always.<br>
+    <span>Automatically.</span>
   </h1>
 
-  <p id="subtitle">
-    Your intelligent family operating system.
-  </p>
+  <div class="sub" id="heroText">
+    FamilyOS brings together planning, finances, health, education and daily life — so you can focus on what truly matters: your family.
+  </div>
+
+  <div class="btns">
+    <button class="btn btn-main" id="btn1">
+      Start Free
+    </button>
+
+    <button class="btn btn-sec" id="btn2">
+      Watch Demo
+    </button>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="icon">🧠</div>
+      <h3 id="c1t">Orchestrator</h3>
+      <p id="c1d">
+        The central AI assistant that coordinates your entire family.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="icon">👨‍🍳</div>
+      <h3 id="c2t">Smart Chef</h3>
+      <p id="c2d">
+        Menus, shopping lists and healthy meals organized automatically.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="icon">💰</div>
+      <h3 id="c3t">House Economist</h3>
+      <p id="c3d">
+        Budgets, savings and intelligent financial planning.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🧒</div>
+      <h3 id="c4t">FamilyOS Junior</h3>
+      <p id="c4d">
+        Routines, homework and rewards for children.
+      </p>
+    </div>
+
+  </div>
+
 </section>
 
-<section class="cards">
-
-  <div class="card">
-    <div class="icon">🧠</div>
-    <h3 id="orchestratorTitle">Orchestrator</h3>
-    <p id="orchestratorDesc">
-      Your central AI assistant for the whole family.
-    </p>
-  </div>
-
-  <div class="card">
-    <div class="icon">👨‍🍳</div>
-    <h3 id="chefTitle">Smart Chef</h3>
-    <p id="chefDesc">
-      Meals, recipes and shopping lists automatically organized.
-    </p>
-  </div>
-
-  <div class="card">
-    <div class="icon">💰</div>
-    <h3 id="financeTitle">Home Economist</h3>
-    <p id="financeDesc">
-      Budgets, savings and smart financial planning.
-    </p>
-  </div>
-
-  <div class="card">
-    <div class="icon">🧒</div>
-    <h3 id="juniorTitle">FamilyOS Junior</h3>
-    <p id="juniorDesc">
-      Routines, homework and rewards for kids.
-    </p>
-  </div>
-
-</section>
+<div class="footer">
+  FamilyOS © 2026
+</div>
 
 <script>
 
-const translations = {
+/* LANGUAGE DETECTION */
 
-  ro: {
-    welcome: "Bun venit înapoi, familia.",
-    subtitle: "Sistemul inteligent pentru organizarea familiei.",
-    orchestrator: "Orchestrator",
-    orchestratorDesc: "Asistentul AI central pentru întreaga familie.",
-    chef: "Chef Inteligent",
-    chefDesc: "Mese, rețete și cumpărături organizate automat.",
-    finance: "Economistul Casei",
-    financeDesc: "Bugete, economii și planificare financiară.",
-    junior: "FamilyOS Junior",
-    juniorDesc: "Rutine, teme și recompense pentru copii."
-  },
+const lang = navigator.language || "en";
 
-  en: {
-    welcome: "Welcome back, family.",
-    subtitle: "Your intelligent family operating system.",
-    orchestrator: "Orchestrator",
-    orchestratorDesc: "Your central AI assistant for the whole family.",
-    chef: "Smart Chef",
-    chefDesc: "Meals, recipes and shopping lists automatically organized.",
-    finance: "Home Economist",
-    financeDesc: "Budgets, savings and smart financial planning.",
-    junior: "FamilyOS Junior",
-    juniorDesc: "Routines, homework and rewards for kids."
-  }
+/* TRANSLATIONS */
+
+const tr = {
+
+ro:{
+title:`Familia ta.<br>Organizată.<br>Mereu.<br><span>Automat.</span>`,
+text:`FamilyOS aduce într-un singur loc programările, finanțele, sănătatea, educația și viața de zi cu zi — ca tu să te concentrezi pe ce contează: familia.`,
+b1:`Începe Gratuit`,
+b2:`Vezi Demo`
+},
+
+it:{
+title:`La tua famiglia.<br>Organizzata.<br>Sempre.<br><span>Automaticamente.</span>`,
+text:`FamilyOS riunisce pianificazione, finanze, salute, educazione e vita quotidiana in un singolo loc.`,
+b1:`Inizia Gratis`,
+b2:`Guarda Demo`
+},
+
+es:{
+title:`Tu familia.<br>Organizada.<br>Siempre.<br><span>Automáticamente.</span>`,
+text:`FamilyOS reúne planificación, finanzas, salud, educación y vida diaria en un solo lugar.`,
+b1:`Comenzar Gratis`,
+b2:`Ver Demo`
+},
+
+fr:{
+title:`Votre famille.<br>Organisée.<br>Toujours.<br><span>Automatiquement.</span>`,
+text:`FamilyOS réunit planification, finances, santé, éducation et vie quotidienne.`,
+b1:`Commencer Gratuitement`,
+b2:`Voir la Démo`
+},
+
+de:{
+title:`Deine Familie.<br>Organisiert.<br>Immer.<br><span>Automatisch.</span>`,
+text:`FamilyOS vereint Planung, Finanzen, Gesundheit, Bildung und Alltag an einem Ort.`,
+b1:`Kostenlos Starten`,
+b2:`Demo Ansehen`
+},
+
+en:{
+title:`Your family.<br>Organized.<br>Always.<br><span>Automatically.</span>`,
+text:`FamilyOS brings together planning, finances, health, education and daily life — so you can focus on what truly matters: your family.`,
+b1:`Start Free`,
+b2:`Watch Demo`
+}
 
 };
 
-function detectLanguage(){
+let current = "en";
 
-  const lang = navigator.language || navigator.userLanguage;
+if(lang.startsWith("ro")) current="ro";
+else if(lang.startsWith("it")) current="it";
+else if(lang.startsWith("es")) current="es";
+else if(lang.startsWith("fr")) current="fr";
+else if(lang.startsWith("de")) current="de";
 
-  if(lang.startsWith('ro')){
-    applyLanguage('ro');
-  }else{
-    applyLanguage('en');
-  }
+document.getElementById("heroTitle").innerHTML = tr[current].title;
+document.getElementById("heroText").innerHTML = tr[current].text;
+document.getElementById("btn1").innerHTML = tr[current].b1;
+document.getElementById("btn2").innerHTML = tr[current].b2;
 
-}
+/* CITY DETECTION */
 
-function applyLanguage(lang){
+async function detectCity(){
 
-  const t = translations[lang];
+try{
 
-  document.getElementById('welcome').innerHTML =
-    t.welcome.replace('familia','<em>familia</em>')
-             .replace('family','<em>family</em>');
+const res = await fetch("https://ipapi.co/json/");
+const data = await res.json();
 
-  document.getElementById('subtitle').textContent = t.subtitle;
+document.getElementById("city").innerHTML =
+`${data.city}, ${data.country_name}`;
 
-  document.getElementById('orchestratorTitle').textContent = t.orchestrator;
-  document.getElementById('orchestratorDesc').textContent = t.orchestratorDesc;
+}catch(e){
 
-  document.getElementById('chefTitle').textContent = t.chef;
-  document.getElementById('chefDesc').textContent = t.chefDesc;
-
-  document.getElementById('financeTitle').textContent = t.finance;
-  document.getElementById('financeDesc').textContent = t.financeDesc;
-
-  document.getElementById('juniorTitle').textContent = t.junior;
-  document.getElementById('juniorDesc').textContent = t.juniorDesc;
+document.getElementById("city").innerHTML =
+"Location unavailable";
 
 }
 
-async function detectLocation(){
-
-  if(!navigator.geolocation){
-    return;
-  }
-
-  navigator.geolocation.getCurrentPosition(async(position)=>{
-
-    const lat = position.coords.latitude;
-    const lon = position.coords.longitude;
-
-    try{
-
-      const response = await fetch(
-        `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`
-      );
-
-      const data = await response.json();
-
-      const temp = data.current_weather.temperature;
-
-      document.getElementById('weather').innerHTML =
-        `☀️ ${temp}°C`;
-
-    }catch(err){
-
-      document.getElementById('weather').innerHTML =
-        `☀️ Weather unavailable`;
-
-    }
-
-  });
-
 }
 
-detectLanguage();
-detectLocation();
+detectCity();
 
 </script>
 
