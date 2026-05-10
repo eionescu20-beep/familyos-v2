@@ -1421,31 +1421,56 @@ function aiResponse(message){
 
 }
 
-function sendMessage(){
+async function sendMessage(){
 
-  const input = document.getElementById('chatInput');
+    const input = document.getElementById('chatInput');
 
-  const value = input.value.trim();
+    const value = input.value.trim();
 
-  if(!value) return;
+    if(!value) return;
 
-  addBubble('chat', value, 'user');
+    addBubble('chat', value, 'user');
 
-  input.value = '';
+    input.value = '';
 
-  addBubble('chat','FamilyOS gândește...','ai');
-
-  setTimeout(() => {
+    addBubble('chat', 'FamilyOS gândește...', 'ai');
 
     const all = document.querySelectorAll('#chat .bubble.ai');
-    all[all.length - 1].remove();
 
-    aiResponse(value);
+    const loadingBubble = all[all.length - 1];
 
-  }, 900);
+    try{
+
+        const response = await fetch('/api/chat', {
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify({
+                message:value
+            })
+        });
+
+        const data = await response.json();
+
+        loadingBubble.remove();
+
+        addBubble('chat', data.reply, 'ai');
+
+    }catch(error){
+
+        loadingBubble.remove();
+
+        addBubble(
+            'chat',
+            'Eroare conexiune AI.',
+            'ai'
+        );
+
+    }
 
 }
-
+  
 function sendMessage2(){
 
   const input = document.getElementById('chatInput2');
