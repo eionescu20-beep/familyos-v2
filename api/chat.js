@@ -1,47 +1,52 @@
-import { createClient } from '@supabase/supabase-js'
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-)
-
 export default async function handler(req, res) {
-  
-  if (req.method !== 'POST') {
+  if (req.method !== "POST") {
     return res.status(405).json({
-      error: 'Method not allowed'
+      error: "Method not allowed"
     });
   }
 
   try {
-
     const { message } = req.body;
 
-    await supabase.from('messages').insert([
-  {
-    role: 'user',
-    content: message
-  }
-])
-    
-    const response = await fetch(
-      'https://api.openai.com/v1/chat/completions',
-      {
-        method: 'POST',
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+    // Salvăm mesajul userului în Supabase
+    if (supabaseUrl && supabaseKey && message) {
+      await fetch(`${supabaseUrl}/rest/v1/messages`, {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
+          "Content-Type": "application/json",
+          "apikey": supabaseKey,
+          "Authorization": `Bearer ${supabaseKey}`,
+          "Prefer": "return=minimal"
         },
         body: JSON.stringify({
-          model: 'gpt-4.1-mini',
+          role: "user",
+          content: message
+        })
+      });
+    }
+
+    // Trimitem mesajul către OpenAI
+    const response = await fetch(
+      "https://api.openai.com/v1/chat/completions",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
+        },
+        body: JSON.stringify({
+          model: "gpt-4.1-mini",
           messages: [
             {
-              role: 'system',
+              role: "system",
               content:
-                'You are FamilyOS, an elegant AI assistant for families. Help with organization, schedules, shopping lists, children tasks, meals, finances and calm daily planning.'
+                "You are FamilyOS, an elegant AI assistant for families. Help with schedules, reminders, shopping lists, children routines, finances, meals and calm daily planning. Answer clearly, warmly and practically."
             },
             {
-              role: 'user',
+              role: "user",
               content: message
             }
           ],
@@ -53,18 +58,33 @@ export default async function handler(req, res) {
     const data = await response.json();
 
     const reply =
-      data.choices?.[0]?.message?.content ||
-      'FamilyOS nu poate răspunde acum.';
+      data?.choices?.[0]?.message?.content ||
+      "FamilyOS este online ✨";
 
-    res.status(200).json({
+    // Salvăm răspunsul AI în Supabase
+    if (supabaseUrl && supabaseKey && reply) {
+      await fetch(`${supabaseUrl}/rest/v1/messages`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": supabaseKey,
+          "Authorization": `Bearer ${supabaseKey}`,
+          "Prefer": "return=minimal"
+        },
+        body: JSON.stringify({
+          role: "assistant",
+          content: reply
+        })
+      });
+    }
+
+    return res.status(200).json({
       reply
     });
 
   } catch (error) {
-
-    res.status(500).json({
-      error: error.message
+    return res.status(500).json({
+      error: error.message || "AI error"
     });
-
   }
 }
