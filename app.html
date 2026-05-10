@@ -1557,7 +1557,25 @@ async function weather(){
 
 setGreeting();
 weather();
+  
+const savedUser = JSON.parse(localStorage.getItem("familyos_user") || "null");
 
+if(savedUser){
+  const userCards = document.querySelectorAll(".user-card strong");
+  userCards.forEach(el => {
+    el.innerText = savedUser.familyName || "Familia Mea";
+  });
+
+  const subtitleCards = document.querySelectorAll(".user-card small");
+  subtitleCards.forEach(el => {
+    el.innerText = savedUser.email || "cont activ";
+  });
+
+  const greetingTitle = document.getElementById("greeting");
+  if(greetingTitle && savedUser.familyName){
+    greetingTitle.innerHTML = `☀️ Bună dimineața, <em>${savedUser.familyName}</em>`;
+  }
+}
 </script>
 
 </body>
