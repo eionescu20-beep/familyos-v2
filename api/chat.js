@@ -1,8 +1,8 @@
 export default async function handler(req, res) {
 
-  if (req.method !== "POST") {
+  if (req.method !== 'POST') {
     return res.status(405).json({
-      error: "Method not allowed"
+      error: 'Method not allowed'
     });
   }
 
@@ -11,23 +11,23 @@ export default async function handler(req, res) {
     const { message } = req.body;
 
     const response = await fetch(
-      "https://api.openai.com/v1/chat/completions",
+      'https://api.openai.com/v1/chat/completions',
       {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
         },
         body: JSON.stringify({
-          model: "gpt-4o-mini",
+          model: 'gpt-4.1-mini',
           messages: [
             {
-              role: "system",
+              role: 'system',
               content:
-                "You are FamilyOS, an elegant AI family orchestrator that helps organize family life, reminders, finances, children and routines."
+                'You are FamilyOS, an elegant AI assistant for families. Help with organization, schedules, shopping lists, children tasks, meals, finances and calm daily planning.'
             },
             {
-              role: "user",
+              role: 'user',
               content: message
             }
           ],
@@ -38,16 +38,19 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
-    return res.status(200).json({
-     reply: data?.choices?.[0]?.message?.content || "FamilyOS este online ✨"
+    const reply =
+      data.choices?.[0]?.message?.content ||
+      'FamilyOS nu poate răspunde acum.';
+
+    res.status(200).json({
+      reply
     });
 
   } catch (error) {
 
-    return res.status(500).json({
-      error: "AI error"
+    res.status(500).json({
+      error: error.message
     });
 
   }
-
 }
