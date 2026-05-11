@@ -1626,23 +1626,28 @@ if(savedUser){
 function openInviteModal(){
 
 const nume = prompt("Nume membru:");
-
 if(!nume) return;
 
 const varsta = prompt("Vârstă:");
-
 if(!varsta) return;
 
 const rol = prompt("Rol (copil, părinte etc):");
-
 if(!rol) return;
 
-alert(
-"Membru adăugat:\n\n" +
-"Nume: " + nume +
-"\nVârstă: " + varsta +
-"\nRol: " + rol
-);
+const lista = document.querySelector("#panel-settings .task-list");
+
+const membruNou = document.createElement("div");
+membruNou.className = "task";
+
+membruNou.innerHTML = `
+  <div class="task-check">${nume.charAt(0).toUpperCase()}</div>
+  <div class="task-text">${nume} · ${varsta} ani</div>
+  <div class="task-tag">${rol}</div>
+`;
+
+lista.appendChild(membruNou);
+
+alert("Membru adăugat: " + nume);
 
 }
 </script>
