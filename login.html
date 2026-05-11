@@ -1,117 +1,275 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - FamilyOS</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FamilyOS — Login</title>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 
-  <style>
-    body{
-      margin:0;
-      font-family:Arial;
-      background:#F5F0E8;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      height:100vh;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
-    .box{
-      background:white;
-      padding:40px;
-      border-radius:20px;
-      width:320px;
-      box-shadow:0 10px 30px rgba(0,0,0,0.1);
-    }
+<style>
+:root{
+  --cream:#F5F0E8;
+  --white:#FDFAF5;
+  --terracotta:#C4622D;
+  --sage:#6B7F5E;
+  --charcoal:#252525;
+  --sand:#D4C5A9;
+}
 
-    h1{
-      margin-bottom:20px;
-      color:#C4622D;
-    }
+*{box-sizing:border-box}
 
-    input{
-      width:100%;
-      padding:14px;
-      margin-bottom:14px;
-      border-radius:12px;
-      border:1px solid #ddd;
-      font-size:16px;
-    }
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:'DM Sans',sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(196,98,45,.22), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(107,127,94,.18), transparent 35%),
+    var(--cream);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--charcoal);
+}
 
-    button{
-      width:100%;
-      padding:14px;
-      border:none;
-      border-radius:12px;
-      background:#C4622D;
-      color:white;
-      font-size:16px;
-      cursor:pointer;
-    }
+.page{
+  width:100%;
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+}
 
-    .info{
-      margin-top:15px;
-      color:#666;
-      font-size:14px;
-    }
-  </style>
+.left{
+  padding:70px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.logo{
+  font-family:'Playfair Display',serif;
+  font-size:34px;
+  font-weight:900;
+}
+
+.logo span{color:var(--terracotta)}
+
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:72px;
+  line-height:.95;
+  margin:0 0 22px;
+}
+
+.hero em{
+  color:var(--terracotta);
+  font-style:italic;
+}
+
+.hero p{
+  max-width:560px;
+  font-size:18px;
+  line-height:1.7;
+  color:#666;
+}
+
+.features{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-top:30px;
+}
+
+.feature{
+  background:rgba(255,255,255,.55);
+  border:1px solid rgba(0,0,0,.06);
+  padding:13px 18px;
+  border-radius:999px;
+  font-size:14px;
+}
+
+.right{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:40px;
+}
+
+.card{
+  width:100%;
+  max-width:410px;
+  background:rgba(253,250,245,.9);
+  border:1px solid rgba(255,255,255,.8);
+  border-radius:34px;
+  padding:38px;
+  box-shadow:0 30px 80px rgba(0,0,0,.14);
+  backdrop-filter:blur(16px);
+}
+
+.badge{
+  display:inline-flex;
+  padding:8px 14px;
+  border-radius:999px;
+  background:#fff;
+  color:var(--terracotta);
+  font-weight:700;
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin-bottom:20px;
+}
+
+.card h2{
+  font-family:'Playfair Display',serif;
+  font-size:38px;
+  margin:0 0 8px;
+}
+
+.card p{
+  color:#777;
+  margin:0 0 26px;
+}
+
+input{
+  width:100%;
+  padding:16px 18px;
+  border:1px solid rgba(0,0,0,.1);
+  border-radius:16px;
+  margin-bottom:14px;
+  font-size:15px;
+  background:white;
+  outline:none;
+}
+
+input:focus{
+  border-color:var(--terracotta);
+}
+
+button{
+  width:100%;
+  padding:16px;
+  border:0;
+  border-radius:16px;
+  background:linear-gradient(135deg,var(--terracotta),#E8855A);
+  color:white;
+  font-weight:800;
+  font-size:15px;
+  cursor:pointer;
+  margin-top:6px;
+}
+
+button:hover{opacity:.92}
+
+.info{
+  margin-top:16px;
+  min-height:22px;
+  color:#666;
+  font-size:14px;
+  line-height:1.5;
+}
+
+.small{
+  margin-top:22px;
+  font-size:13px;
+  color:#999;
+  text-align:center;
+}
+
+@media(max-width:850px){
+  .page{grid-template-columns:1fr}
+  .left{padding:36px}
+  .hero h1{font-size:48px}
+  .right{padding:24px}
+}
+</style>
 </head>
 
 <body>
 
-<div class="box">
-  <h1>FamilyOS</h1>
+<div class="page">
 
-  <input type="email" id="email" placeholder="Email">
-  <input type="password" id="password" placeholder="Parola">
+  <section class="left">
+    <div class="logo">Family<span>OS</span></div>
 
-  <button onclick="login()">Login / Register</button>
+    <div class="hero">
+      <h1>Familia ta.<br>Mai calmă.<br><em>Mai organizată.</em></h1>
+      <p>
+        Intră în dashboard-ul tău FamilyOS și lasă AI-ul să te ajute cu programări,
+        cumpărături, taskuri, copii, buget și rutina zilnică.
+      </p>
 
-  <div class="info" id="info"></div>
+      <div class="features">
+        <div class="feature">🧠 AI Orchestrator</div>
+        <div class="feature">🛒 Shopping List</div>
+        <div class="feature">📅 Calendar</div>
+        <div class="feature">⭐ FamilyOS Junior</div>
+      </div>
+    </div>
+
+    <div class="small">© 2026 FamilyOS — The AI Operating System for Families</div>
+  </section>
+
+  <section class="right">
+    <div class="card">
+      <div class="badge">Private Family Access</div>
+
+      <h2>Bine ai revenit</h2>
+      <p>Login sau creează contul familiei tale.</p>
+
+      <input type="email" id="email" placeholder="Email">
+      <input type="password" id="password" placeholder="Parola">
+
+      <button onclick="login()">Intră în FamilyOS</button>
+
+      <div class="info" id="info"></div>
+    </div>
+  </section>
+
 </div>
 
 <script>
-
 const supabaseUrl = 'https://zezjzsyipmhifccuweze.supabase.co';
 const supabaseKey = 'sb_publishable_FE4eNsKVDsfiPaCDoeIkxA_6t5VNw1k';
 
 const client = supabase.createClient(supabaseUrl, supabaseKey);
 
 async function login(){
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value.trim();
+  const info = document.getElementById('info');
 
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
+  if(!email || !password){
+    info.innerText = 'Completează emailul și parola.';
+    return;
+  }
 
-  const { data, error } = await client.auth.signUp({
+  info.innerText = 'Se conectează...';
+
+  const loginData = await client.auth.signInWithPassword({
     email,
     password
   });
 
-  if(error){
-
-    const loginData = await client.auth.signInWithPassword({
-      email,
-      password
-    });
-
-    if(loginData.error){
-      document.getElementById('info').innerText = loginData.error.message;
-      return;
-    }
-
-    window.location.href = "/app.html";
-
-  } else {
-
-    document.getElementById('info').innerText =
-      "Cont creat. Verifică emailul.";
-
+  if(!loginData.error){
+    window.location.href = '/app.html';
+    return;
   }
 
-}
+  const registerData = await client.auth.signUp({
+    email,
+    password
+  });
 
+  if(registerData.error){
+    info.innerText = registerData.error.message;
+    return;
+  }
+
+  info.innerText = 'Cont creat. Verifică emailul pentru confirmare.';
+}
 </script>
 
 </body>
