@@ -1264,7 +1264,9 @@ body{
         <div class="card">
           <div class="card-head">
             <div class="card-title">Membrii familiei</div>
-            <div class="card-action">+ Invită</div>
+            <div class="card-action" onclick="openInviteModal()">
+           + Invită
+         </div>
           </div>
 
           <div class="task-list">
@@ -1620,6 +1622,16 @@ if(savedUser){
     greetingTitle.innerHTML = `☀️ Bună dimineața, <em>${savedUser.familyName}</em>`;
   }
 }
+  
+function openInviteModal(){
+
+const email = prompt("Introdu email-ul membrului familiei:");
+
+if(!email) return;
+
+alert("Invitație trimisă către: " + email);
+
+} 
   function logout(){
   localStorage.clear();
   sessionStorage.clear();
