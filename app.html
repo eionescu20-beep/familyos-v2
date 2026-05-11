@@ -1265,8 +1265,8 @@ body{
           <div class="card-head">
             <div class="card-title">Membrii familiei</div>
             <div class="card-action" onclick="openInviteModal()">
-           + Invită
-         </div>
+           + Adaugă membru
+            </div>
           </div>
 
           <div class="task-list">
@@ -1625,17 +1625,25 @@ if(savedUser){
   
 function openInviteModal(){
 
-const email = prompt("Introdu email-ul membrului familiei:");
+const nume = prompt("Nume membru:");
 
-if(!email) return;
+if(!nume) return;
 
-alert("Invitație trimisă către: " + email);
+const varsta = prompt("Vârstă:");
 
-} 
-  function logout(){
-  localStorage.clear();
-  sessionStorage.clear();
-  window.location.href = "/login.html";
+if(!varsta) return;
+
+const rol = prompt("Rol (copil, părinte etc):");
+
+if(!rol) return;
+
+alert(
+"Membru adăugat:\n\n" +
+"Nume: " + nume +
+"\nVârstă: " + varsta +
+"\nRol: " + rol
+);
+
 }
 </script>
 
