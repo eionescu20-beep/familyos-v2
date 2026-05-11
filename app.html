@@ -759,6 +759,9 @@ body{
       <strong>Familia Mea</strong>
       <small>Plan Family · 4 membri</small>
     </div>
+    <button onclick="logout()" class="logout-btn">
+  Ieși din cont
+</button>
   </div>
 
 </aside>
@@ -1600,6 +1603,11 @@ if(savedUser){
   if(greetingTitle && savedUser.familyName){
     greetingTitle.innerHTML = `☀️ Bună dimineața, <em>${savedUser.familyName}</em>`;
   }
+}
+  function logout(){
+  localStorage.clear();
+  sessionStorage.clear();
+  window.location.href = "/login.html";
 }
 </script>
 
