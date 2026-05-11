@@ -16,7 +16,6 @@
   --terracotta:#C4622D;
   --sage:#6B7F5E;
   --charcoal:#252525;
-  --sand:#D4C5A9;
 }
 
 *{box-sizing:border-box}
@@ -163,6 +162,15 @@ button{
 
 button:hover{opacity:.92}
 
+.forgot{
+  margin-top:16px;
+  text-align:center;
+  color:var(--terracotta);
+  font-weight:700;
+  cursor:pointer;
+  font-size:14px;
+}
+
 .info{
   margin-top:16px;
   min-height:22px;
@@ -224,6 +232,8 @@ button:hover{opacity:.92}
 
       <button onclick="login()">Intră în FamilyOS</button>
 
+      <div class="forgot" onclick="resetPassword()">Ai uitat parola?</div>
+
       <div class="info" id="info"></div>
     </div>
   </section>
@@ -269,6 +279,29 @@ async function login(){
   }
 
   info.innerText = 'Cont creat. Verifică emailul pentru confirmare.';
+}
+
+async function resetPassword(){
+  const email = document.getElementById('email').value.trim();
+  const info = document.getElementById('info');
+
+  if(!email){
+    info.innerText = 'Scrie emailul tău mai întâi.';
+    return;
+  }
+
+  info.innerText = 'Trimit email pentru resetare...';
+
+  const { error } = await client.auth.resetPasswordForEmail(email, {
+    redirectTo: 'https://familyos-v2-pl.vercel.app/login.html'
+  });
+
+  if(error){
+    info.innerText = error.message;
+    return;
+  }
+
+  info.innerText = 'Ți-am trimis email pentru resetarea parolei.';
 }
 </script>
 
