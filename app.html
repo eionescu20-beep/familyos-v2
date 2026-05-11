@@ -1651,6 +1651,39 @@ lista.appendChild(membruNou);
 alert("Membru adăugat: " + nume);
 
 }
+  function editJuniorTasks(){
+
+  const newTask = prompt("Adaugă o rutină nouă pentru copii:");
+
+  if(!newTask) return;
+
+  const taskList = document.querySelector("#panel-junior .task-list");
+
+  const task = document.createElement("div");
+
+  task.className = "task";
+
+  task.innerHTML = `
+    <div class="task-check">○</div>
+    <div class="task-text">${newTask}</div>
+    <div class="task-tag">Nou</div>
+  `;
+
+  taskList.appendChild(task);
+
+  alert("Rutina a fost adăugată ✨");
+
+}
+
+function logout(){
+
+  localStorage.clear();
+
+  sessionStorage.clear();
+
+  window.location.href = "/login.html";
+
+}
 </script>
 
 </body>
