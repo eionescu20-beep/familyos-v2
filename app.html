@@ -1653,30 +1653,69 @@ lista.appendChild(membruNou);
 alert("Membru adăugat: " + nume);
 
 }
-  function editJuniorTasks(){
+  
+function editJuniorTasks(){
 
   const newTask = prompt("Adaugă o rutină nouă pentru copii:");
 
   if(!newTask) return;
 
-  const taskList = document.querySelector("#panel-junior .task-list");
+  const savedTasks =
+    JSON.parse(localStorage.getItem("juniorTasks")) || [];
 
-  const task = document.createElement("div");
+  savedTasks.push(newTask);
 
-  task.className = "task";
+  localStorage.setItem(
+    "juniorTasks",
+    JSON.stringify(savedTasks)
+  );
 
-  task.innerHTML = `
-    <div class="task-check">○</div>
-    <div class="task-text">${newTask}</div>
-    <div class="task-tag">Nou</div>
-  `;
-
-  taskList.appendChild(task);
+  renderJuniorTasks();
 
   alert("Rutina a fost adăugată ✨");
 
 }
 
+function renderJuniorTasks(){
+
+  const taskList =
+    document.querySelector("#panel-junior .task-list");
+
+  if(!taskList) return;
+
+  taskList.innerHTML = "";
+
+  const defaultTasks = [
+    "Spălat pe dinți",
+    "Tema la matematică",
+    "Aprobă recompensa Anei"
+  ];
+
+  const savedTasks =
+    JSON.parse(localStorage.getItem("juniorTasks")) || [];
+
+  const allTasks = [...defaultTasks, ...savedTasks];
+
+  allTasks.forEach(taskText => {
+
+    const task = document.createElement("div");
+
+    task.className = "task";
+
+    task.innerHTML = `
+      <div class="task-check">○</div>
+      <div class="task-text">${taskText}</div>
+      <div class="task-tag">Task</div>
+    `;
+
+    taskList.appendChild(task);
+
+  });
+
+}
+
+renderJuniorTasks();
+  
 function logout(){
 
   localStorage.clear();
