@@ -1678,6 +1678,8 @@ membri.push({
 });
 
 localStorage.setItem("familyMembers", JSON.stringify(membri));
+
+renderFamilyMembers();
   
 alert("Membru adăugat: " + nume);
 
@@ -1744,6 +1746,40 @@ function renderJuniorTasks(){
 }
 
 renderJuniorTasks();
+
+function renderFamilyMembers(){
+
+  const lista = document.querySelector("#panel-settings .task-list");
+  if(!lista) return;
+
+  lista.innerHTML = "";
+
+  const defaultMembers = [
+    { nume:"Mama", varsta:"", rol:"Părinte", text:"Mama · zi naștere 12 Martie" },
+    { nume:"Ionuț", varsta:"12", rol:"Junior" },
+    { nume:"Ana", varsta:"8", rol:"Junior" }
+  ];
+
+  const savedMembers = JSON.parse(localStorage.getItem("familyMembers")) || [];
+
+  const allMembers = [...defaultMembers, ...savedMembers];
+
+  allMembers.forEach(membru => {
+    const div = document.createElement("div");
+    div.className = "task";
+
+    div.innerHTML = `
+      <div class="task-check">${membru.nume.charAt(0).toUpperCase()}</div>
+      <div class="task-text">${membru.text || `${membru.nume} · ${membru.varsta} ani`}</div>
+      <div class="task-tag">${membru.rol}</div>
+    `;
+
+    lista.appendChild(div);
+  });
+}
+
+renderFamilyMembers();
+  
   
 function logout(){
 
