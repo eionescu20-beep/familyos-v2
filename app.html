@@ -1718,8 +1718,7 @@ renderJuniorTasks();
   
 function logout(){
 
-  localStorage.clear();
-
+  localStorage.removeItem("familyosUser");
   sessionStorage.clear();
 
   window.location.href = "/login.html";
